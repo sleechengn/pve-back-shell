@@ -208,11 +208,11 @@ else
 fi
 
 if [ -e "/usr/bin/ttyd.x86_64" ]; then
-	echo "21 备份 /sur/bin/ttyd.x86_64"
+	echo "21 备份 /usr/bin/ttyd.x86_64"
 	mkdir -p $(dirname $0)/usr/bin
 	cp /usr/bin/ttyd.x86_64 $(dirname $0)/usr/bin
 else
-	echo "21 未备份 /sur/bin/ttyd.x86_64"
+	echo "21 未备份 /usr/bin/ttyd.x86_64"
 fi
 
 if [ -e "/etc/hostname" ]; then
