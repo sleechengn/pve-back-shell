@@ -215,6 +215,14 @@ else
 	echo "21 未备份 /usr/bin/ttyd.x86_64"
 fi
 
+if [ -e "/etc/nginx" ] && [ "$(ls -A /etc/nginx)" ]; then
+	echo "21.1 备份/etc/nginx"
+	mkdir -p $(dirname $0)/etc/nginx
+	cp -ra /etc/nginx/* $(dirname $0)/etc/nginx
+else
+	echo "21.1 未备份 /etc/nginx"
+fi
+
 if [ -e "/etc/hostname" ]; then
 	echo "22 备份 /etc/hostname"
 	mkdir -p $(dirname $0)/etc
