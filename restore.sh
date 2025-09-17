@@ -96,6 +96,11 @@ if [ -e "$(dirname $0)/usr/bin/ttyd.x86_64" ]; then
 	cp -ra $(dirname $0)/usr/bin/ttyd.x86_64 /usr/bin
 fi
 
+if [ -e "$(dirname $0)/etc/nginx" ]; then
+	cp -ra $(dirname $0)/etc/nginx /etc
+	echo "16.2 还原/etc/nginx"
+fi
+
 if [ -e "$(dirname $0)/etc/systemd/system/ttyd.service" ]; then
 	echo "17 还原/etc/systemd/system/ttyd.service"
         cp -ra $(dirname $0)/etc/systemd/system/ttyd.service /etc/systemd/system
