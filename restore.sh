@@ -144,6 +144,7 @@ fi
 if [ -e "$(dirname $0)/home/sa/.tmux.conf" ] && [ -e "/home/sa" ]; then
 	echo "19.3 还原/home/sa/.tmux.conf"
 	cp -ra $(dirname $0)/home/sa/.tmux.conf /home/sa
+	chown -R sa:users /home/sa/.tmux*
 fi
 
 if [ -e "$(dirname $0)/etc/systemd/system/autostart.service" ]; then
