@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 set -e
 
+if [ -e "/etc/pve" ]; then
+
 rm -rf $(dirname $0)/{etc,opt,usr,var}
 
 if [ -e "/home" ] && [ "$(ls -A /home)" ]; then
@@ -272,3 +274,7 @@ else
 fi
 
 echo "注意还原以后有的需要修改，比如fstab"
+
+else
+echo "当前不是pve环境，备份错了"
+fi
