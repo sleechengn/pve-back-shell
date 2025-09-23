@@ -263,5 +263,12 @@ else
 	echo "26 未备份 /etc/pve/datacenter.cfg"
 fi
 
+if [ -e "/etc/systemd/system/fifo.service" ]; then
+	mkdir -p $(dirname $0)/etc/systemd/system
+	cp -ra /etc/systemd/system/fifo.service $(dirname $0)/etc/systemd/system
+	echo "27备份/etc/systemd/system/fifo.service"
+else
+	echo "27未备 /etc/systemd/system/fifo.service"
+fi
 
 echo "注意还原以后有的需要修改，比如fstab"

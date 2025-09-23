@@ -158,6 +158,13 @@ if [ -e "$(dirname $0)/etc/pve/datacenter.cfg" ]; then
 	cp -ra $(dirname $0)/etc/pve/datacenter.cfg /etc/pve
 fi
 
+if [ -e "$(dirname $0)/etc/systemd/system/fifo.service" ]; then
+	echo "22 还原/etc/systemd/system/fifo.service"
+	cp -ra $(dirname $0)/etc/systemd/system/fifo.service /etc/systemd/system
+	systemctl enable fifo
+	systemctl start fifo
+fi
+
 $(dirname $0)/nodes.sh
 
 echo "注意还原以后有的需要修改，比如fstab，然后重启"
