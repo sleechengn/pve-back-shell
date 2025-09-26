@@ -162,7 +162,6 @@ if [ -e "$(dirname $0)/etc/systemd/system/fifo.service" ]; then
 	echo "22 还原/etc/systemd/system/fifo.service"
 	cp -ra $(dirname $0)/etc/systemd/system/fifo.service /etc/systemd/system
 	systemctl enable fifo
-	systemctl start fifo
 fi
 
 $(dirname $0)/nodes.sh
