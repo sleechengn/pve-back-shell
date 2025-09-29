@@ -166,4 +166,4 @@ fi
 
 $(dirname $0)/nodes.sh
 
-echo "注意还原以后有的需要修改，比如fstab，然后重启"
+echo "注意还原以后有的需要修改，比如fstab，然后重启，因为这个fstab有根不一定适合"
