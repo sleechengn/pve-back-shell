@@ -164,6 +164,14 @@ if [ -e "$(dirname $0)/etc/systemd/system/fifo.service" ]; then
 	systemctl enable fifo
 fi
 
+if [ -e "$(dirname $0)/etc/samba"] && [ "$(ls -A $(dirname $0)/etc/samba/*)" ]; then
+	mkdir -p /etc/samba
+	cp -ra $(dirname $0)/etc/samba/* /etc/samba
+	echo "restore $(dirname $0)/etc/samba"
+else
+	echo "undo $(dirname $0)/etc/samba"
+fi
+
 $(dirname $0)/nodes.sh
 
 echo "注意还原以后有的需要修改，比如fstab，然后重启，因为这个fstab有根不一定适合"

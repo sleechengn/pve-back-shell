@@ -273,6 +273,14 @@ else
 	echo "27未备 /etc/systemd/system/fifo.service"
 fi
 
+if [ -e "/etc/samba" ] && [ "$(ls -A /etc/samba/*)" ]; then
+	mkdir -p $(dirname $0)/etc/samba
+	cp -ra /etc/samba/* $(dirname $0)/etc/samba
+	echo "28 备份 /etc/samba"
+else
+	echo "28 未备份 /etc/samba"
+fi
+
 echo "注意还原以后有的需要修改，比如fstab"
 
 else
