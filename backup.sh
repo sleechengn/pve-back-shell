@@ -281,6 +281,14 @@ else
 	echo "28 未备份 /etc/samba"
 fi
 
+if [ -e "/etc/tgt" ] && [ "$(ls -A /etc/tgt/*)" ]; then
+	mkdir -p $(dirname $0)/etc/tgt
+	cp -ra /etc/tgt/* $(dirname $0)/etc/tgt
+	echo "备份 /etc/tgt"
+else
+	echo "未备份 tgt"
+fi
+
 echo "注意还原以后有的需要修改，比如fstab"
 
 else

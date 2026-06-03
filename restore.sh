@@ -172,6 +172,14 @@ else
 	echo "undo $(dirname $0)/etc/samba"
 fi
 
+if [ -e "$(dirname $0)/etc/tgt" ] && [ "$(ls -A $(dirname $0)/etc/tgt/*)" ]; then
+	mkdir -p /etc/tgt
+	cp -ra $(dirname $0)/etc/tgt/* /etc/tgt
+	echo "还原 tgt"
+else
+	echo "未还原 tgt"
+fi
+
 $(dirname $0)/nodes.sh
 
 echo "注意还原以后有的需要修改，比如fstab，然后重启，因为这个fstab有根不一定适合"
