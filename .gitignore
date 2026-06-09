@@ -4,6 +4,7 @@ opt
 etc
 lib
 var
+root
 sync2sleechengn.sh
 .push2github.sh
 .autopush.sh
