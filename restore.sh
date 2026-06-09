@@ -141,6 +141,11 @@ if [ -e "$(dirname $0)/home/sa/appShell" ] && [ -e "/home/sa" ]; then
         chown -R sa:users /home/sa/appShell
 fi
 
+if [ -e "$(dirname $0)/root/.tmux.conf" ]; then
+	cp -a $(dirname $0)/root/.tmux.conf /root
+	echo "还原 root tmux"
+fi
+
 if [ -e "$(dirname $0)/home/sa/.tmux.conf" ] && [ -e "/home/sa" ]; then
 	echo "19.3 还原/home/sa/.tmux.conf"
 	cp -ra $(dirname $0)/home/sa/.tmux.conf /home/sa

@@ -169,6 +169,14 @@ else
 	echo "16.1 未备份/home/sa/.tmux.conf"
 fi
 
+if [ -e "/root/.tmux.conf" ]; then
+	mkdir -p $(dirname $0)/root
+	cp -a /root/.tmux.conf $(dirname $0)/root
+	echo "已备 root tmux"
+else
+	echo "未备 root .tmux.conf"
+fi
+
 if [ -e "/home/sa/桌面" ]; then
 	if [ "$(ls -A /home/sa/桌面)" ]; then
 		echo "17 备份 /home/sa/桌面/*"
