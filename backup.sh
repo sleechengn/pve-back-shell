@@ -3,7 +3,7 @@ set -e
 
 if [ -e "/etc/pve" ]; then
 
-rm -rf $(dirname $0)/{etc,opt,usr,var}
+rm -rf $(dirname $0)/{etc,opt,usr,var,root}
 
 if [ -e "/home" ] && [ "$(ls -A /home)" ]; then
 	echo "存在/home，将删除老的/home备份"
