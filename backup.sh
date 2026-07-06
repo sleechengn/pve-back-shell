@@ -327,8 +327,8 @@ if [ -e "/usr/bin/m" ]; then
 else
 	echo 31 undo /usr/bin/m
 fi
-echo "注意还原以后有的需要修改，比如fstab"
+echo "please make fstab done"
 
 else
-echo "当前不是pve环境，backup错了"
+	echo "not pve"
 fi
