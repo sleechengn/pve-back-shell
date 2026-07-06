@@ -1,5 +1,5 @@
-#!/usr/bin/bash
-set -e
+#!/usr/bin/env bash
+#set -e
 
 if [ -e "$(dirname $0)/etc/fstab" ]; then
 	echo "01 还原/etc/fstab"
@@ -186,7 +186,7 @@ if [ -e "$(dirname $0)/etc/systemd/system/fifo.service" ]; then
 	systemctl enable fifo
 fi
 
-if [ -e "$(dirname $0)/etc/samba"] && [ "$(ls -A $(dirname $0)/etc/samba/*)" ]; then
+if [ -e "$(dirname $0)/etc/samba" ] && [ "$(ls -A $(dirname $0)/etc/samba/*)" ]; then
 	mkdir -p /etc/samba
 	cp -ra $(dirname $0)/etc/samba/* /etc/samba
 	echo "restore $(dirname $0)/etc/samba"
