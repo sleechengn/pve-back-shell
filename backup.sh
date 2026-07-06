@@ -242,7 +242,7 @@ else
 fi
 
 if [ -e "/etc/nginx" ] && [ "$(ls -A /etc/nginx)" ]; then
-	echo "21.1 backup/etc/nginx"
+	echo "21.1 backup /etc/nginx"
 	mkdir -p $(dirname $0)/etc/nginx
 	cp -ra /etc/nginx/* $(dirname $0)/etc/nginx
 else
