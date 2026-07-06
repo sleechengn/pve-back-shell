@@ -320,6 +320,7 @@ if [ -e "/usr/bin/t" ]; then
 else
 	echo 30 undo /usr/bin/t
 fi
+
 if [ -e "/usr/bin/m" ]; then
 	mkdir -p $(dirname $0)/usr/bin
 	cp -ra /usr/bin/m $(dirname $0)/usr/bin
@@ -327,6 +328,7 @@ if [ -e "/usr/bin/m" ]; then
 else
 	echo 31 undo /usr/bin/m
 fi
+
 echo "please make fstab done"
 
 else
