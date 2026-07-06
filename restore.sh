@@ -155,9 +155,18 @@ fi
 if [ -e "$(dirname $0)/root/.bashrc" ]; then
 	echo "/root/.bashrc"
 	cp -ra $(dirname $0)/root/.bashrc /root
-	echo "do bash"
+	echo "restore bash"
 else
 	echo undo
+fi
+
+if [ -e "$(dirname $0)/home/sa/.bashrc" ]; then
+	useradd -m sa
+	mkdir -p /home/sa
+	cp -ra $(dirname $0)/home/sa/.bashrc /home/sa
+	echo restore sa ba
+else
+	echo notfound
 fi
 
 if [ -e "$(dirname $0)/etc/systemd/system/autostart.service" ]; then

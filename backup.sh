@@ -172,9 +172,17 @@ fi
 if [ -e "/root/.bashrc" ]; then
 	mkdir -p $(dirname $0)/root
 	cp /root/.bashrc $(dirname $0)/root
-	echo bashrc
+	echo backup root bashrc
 else
-	echo undo bash
+	echo undo root s bashrc
+fi
+
+if [ -e "/home/sa/.bashrc" ]; then
+	mkdir -p $(dirname $0)/home/sa
+	cp -ra /home/sa/.bashrc $(dirname $0)/home/sa
+	echo back sa bash co
+else
+	echo "undo sa bashrc"
 fi
 
 if [ -e "/root/.tmux.conf" ]; then
