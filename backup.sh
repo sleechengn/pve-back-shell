@@ -164,25 +164,25 @@ fi
 if [ -e "/home/sa/.tmux.conf" ]; then
 	mkdir -p $(dirname $0)/home/sa
 	cp -a /home/sa/.tmux.conf $(dirname $0)/home/sa
-	echo "16.1 已备份/home/sa/.tmux.conf"
+	echo "16.1 backup /home/sa/.tmux.conf"
 else
-	echo "16.1 未备份/home/sa/.tmux.conf"
+	echo "16.1 undo /home/sa/.tmux.conf"
 fi
 
 if [ -e "/root/.bashrc" ]; then
 	mkdir -p $(dirname $0)/root
 	cp /root/.bashrc $(dirname $0)/root
-	echo backup root bashrc
+	echo 16.2 backup root bashrc
 else
-	echo undo root s bashrc
+	echo 16.2 undo root s bashrc
 fi
 
 if [ -e "/home/sa/.bashrc" ]; then
 	mkdir -p $(dirname $0)/home/sa
 	cp -ra /home/sa/.bashrc $(dirname $0)/home/sa
-	echo back sa bash co
+	echo 16.3 back sa bash co
 else
-	echo "undo sa bashrc"
+	echo "16.3 undo sa bashrc"
 fi
 
 if [ -e "/root/.tmux.conf" ]; then
@@ -308,11 +308,25 @@ fi
 if [ -e "/etc/tgt" ] && [ "$(ls -A /etc/tgt/*)" ]; then
 	mkdir -p $(dirname $0)/etc/tgt
 	cp -ra /etc/tgt/* $(dirname $0)/etc/tgt
-	echo "备份 /etc/tgt"
+	echo "29 backup /etc/tgt"
 else
-	echo "未备份 tgt"
+	echo "29 undo tgt"
 fi
 
+if [ -e "/usr/bin/t" ]; then
+	mkdir -p $(dirname $0)/usr/bin
+	cp -ra /usr/bin/t $(dirname $0)/usr/bin
+	echo 30 backup /usr/bin/t
+else
+	echo 30 undo /usr/bin/t
+fi
+if [ -e "/usr/bin/m" ]; then
+	mkdir -p $(dirname $0)/usr/bin
+	cp -ra /usr/bin/m $(dirname $0)/usr/bin
+	echo 31 backup /usr/bin/m
+else
+	echo 31 undo /usr/bin/m
+fi
 echo "注意还原以后有的需要修改，比如fstab"
 
 else

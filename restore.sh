@@ -189,17 +189,33 @@ fi
 if [ -e "$(dirname $0)/etc/samba" ] && [ "$(ls -A $(dirname $0)/etc/samba/*)" ]; then
 	mkdir -p /etc/samba
 	cp -ra $(dirname $0)/etc/samba/* /etc/samba
-	echo "restore $(dirname $0)/etc/samba"
+	echo "23 restore $(dirname $0)/etc/samba"
 else
-	echo "undo $(dirname $0)/etc/samba"
+	echo "23 undo $(dirname $0)/etc/samba"
 fi
 
 if [ -e "$(dirname $0)/etc/tgt" ] && [ "$(ls -A $(dirname $0)/etc/tgt/*)" ]; then
 	mkdir -p /etc/tgt
 	cp -ra $(dirname $0)/etc/tgt/* /etc/tgt
-	echo "还原 tgt"
+	echo "24 restore tgt"
 else
-	echo "未还原 tgt"
+	echo "24 undo tgt"
+fi
+
+if [ -e "$(dirname $0)/usr/bin/t" ]; then
+	mkdir -p /usr/bin
+	cp -ra $(dirname $0)/usr/bin/t /usr/bin
+	echo 25 restore /usr/bin/t
+else
+	echo 25 undo /usr/bin/t
+fi
+
+if [ -e "$(dirname $0)/usr/bin/m" ]; then
+	mkdir -p /usr/bin
+	cp -ra $(dirname $0)/usr/bin/m /usr/bin
+	echo 26 restore /usr/bin/m
+else
+	echo 26 undo /usr/bin/m
 fi
 
 $(dirname $0)/nodes.sh
