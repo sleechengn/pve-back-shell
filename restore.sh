@@ -152,6 +152,14 @@ if [ -e "$(dirname $0)/home/sa/.tmux.conf" ] && [ -e "/home/sa" ]; then
 	chown -R sa:users /home/sa/.tmux*
 fi
 
+if [ -e "$(dirname $0)/root/.bashrc" ]; then
+	echo "/root/.bashrc"
+	cp -ra $(dirname $0)/root/.bashrc /root
+	echo "do bash"
+else
+	echo undo
+fi
+
 if [ -e "$(dirname $0)/etc/systemd/system/autostart.service" ]; then
         echo "20 还原/etc/systemd/system/autostart.service"
         cp -ra $(dirname $0)/etc/systemd/system/autostart.service /etc/systemd/system

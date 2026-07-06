@@ -169,6 +169,14 @@ else
 	echo "16.1 未备份/home/sa/.tmux.conf"
 fi
 
+if [ -e "/root/.bashrc" ]; then
+	mkdir -p $(dirname $0)/root
+	cp /root/.bashrc $(dirname $0)/root
+	echo bashrc
+else
+	echo undo bash
+fi
+
 if [ -e "/root/.tmux.conf" ]; then
 	mkdir -p $(dirname $0)/root
 	cp -a /root/.tmux.conf $(dirname $0)/root
