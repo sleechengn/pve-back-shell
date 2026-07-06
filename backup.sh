@@ -292,9 +292,9 @@ fi
 if [ -e "/etc/systemd/system/fifo.service" ]; then
 	mkdir -p $(dirname $0)/etc/systemd/system
 	cp -ra /etc/systemd/system/fifo.service $(dirname $0)/etc/systemd/system
-	echo "27backup/etc/systemd/system/fifo.service"
+	echo "27 backup /etc/systemd/system/fifo.service"
 else
-	echo "27未备 /etc/systemd/system/fifo.service"
+	echo "27 undo /etc/systemd/system/fifo.service"
 fi
 
 if [ -e "/etc/samba" ] && [ "$(ls -A /etc/samba/*)" ]; then
