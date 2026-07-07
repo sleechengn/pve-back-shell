@@ -297,6 +297,14 @@ else
 	echo "27 undo /etc/systemd/system/fifo.service"
 fi
 
+if [ -e "/etc/systemd/system/fbs.service" ]; then
+	mkdir -p $(dirname $0)/etc/systemd/system
+	cp -ra /etc/systemd/system/fbs.service $(dirname $0)/etc/systemd/system
+	echo "27.01 backup /etc/systemd/system/fbs.service"
+else
+	echo "27.01 undo /etc/systemd/system/fbs.service"
+fi
+
 if [ -e "/etc/samba" ] && [ "$(ls -A /etc/samba/*)" ]; then
 	mkdir -p $(dirname $0)/etc/samba
 	cp -ra /etc/samba/* $(dirname $0)/etc/samba

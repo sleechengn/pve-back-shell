@@ -102,9 +102,15 @@ if [ -e "$(dirname $0)/etc/nginx" ]; then
 fi
 
 if [ -e "$(dirname $0)/etc/systemd/system/ttyd.service" ]; then
-	echo "17 还原/etc/systemd/system/ttyd.service"
-        cp -ra $(dirname $0)/etc/systemd/system/ttyd.service /etc/systemd/system
-        systemctl enable ttyd
+	echo "17 restore/etc/systemd/system/ttyd.service"
+    cp -ra $(dirname $0)/etc/systemd/system/ttyd.service /etc/systemd/system
+    systemctl enable ttyd
+fi
+
+if [ -e "$(dirname $0)/etc/systemd/system/fbs.service" ]; then
+	echo "17.01 restore /etc/systemd/system/fbs.service"
+    cp -ra $(dirname $0)/etc/systemd/system/fbs.service /etc/systemd/system
+    systemctl enable fbs
 fi
 
 if [ -e "$(dirname $0)/home/sa" ]; then
