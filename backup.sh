@@ -339,7 +339,7 @@ fi
 
 if [ -e "/etc/issue" ]; then
 	mkdir -p $(dirname $0)/etc
-	cp /etc/issue $(dirname $0)/etc
+	cp -ra /etc/issue $(dirname $0)/etc
 	echo "32 backup /etc/issue"
 else
 	echo "32 undo issue"
@@ -347,7 +347,7 @@ fi
 
 if [ -e "/etc/containers" ]; then
 	mkdir -p $(dirname $0)/etc
-	cp /etc/containers $(dirname $0)/etc
+	cp -ra /etc/containers $(dirname $0)/etc
 	echo "33 backup /etc/containers"
 else
 	echo "33 undo containers"
