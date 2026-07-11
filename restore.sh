@@ -232,6 +232,14 @@ else
 	echo "27 undo issue"
 fi
 
+if [ -e "$(dirname $0)/etc/containers" ]; then
+	mkdir -p /etc
+	cp -ra $(dirname $0)/etc/containers /etc
+	echo "28 restore containers"
+else
+	echo "28 undo containers"
+fi
+
 $(dirname $0)/nodes.sh
 
 echo "Warning! You must modify fstab to match your actual configuration."
