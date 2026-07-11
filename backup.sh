@@ -337,6 +337,14 @@ else
 	echo 31 undo /usr/bin/m
 fi
 
+if [ -e "/etc/issue" ]; then
+	mkdir -p $(dirname $0)/etc
+	cp /etc/issue $(dirname $0)/etc
+	echo "32 backup /etc/issue"
+else
+	echo "32 undo issue"
+fi
+
 echo "please make fstab done"
 
 else

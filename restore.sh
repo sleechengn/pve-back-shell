@@ -224,6 +224,14 @@ else
 	echo 26 undo /usr/bin/m
 fi
 
+if [ -e "$(dirname $0)/etc/issue" ]; then
+	mkdir -p /etc
+	cp -ra $(dirname $0)/etc/issue /etc
+	echo "27 restore issue"
+else
+	echo "27 undo issue"
+fi
+
 $(dirname $0)/nodes.sh
 
-echo "注意还原以后有的需要修改，比如fstab，然后重启，因为这个fstab有根不一定适合"
+echo "Warning! You must modify fstab to match your actual configuration."
