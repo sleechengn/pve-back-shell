@@ -359,6 +359,12 @@ if [ -e "/etc/kernel/cmdline" ]; then
 	echo 34 /etc/kernel/cmdline
 fi
 
+if [ -e "/root/.bg.jpg" ]; then
+	mkdir -p $(dirname $0)/root
+	cp -ra /root/.bg.jpg $(dirname $0)/root
+	echo 35 /root/.bg.jpg
+fi
+
 echo "please make fstab done"
 
 else

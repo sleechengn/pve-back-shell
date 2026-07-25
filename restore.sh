@@ -247,6 +247,12 @@ if [ -e "$(dirname $0)/etc/kernel/cmdline" ]; then
 	proxmox-boot-tool refresh
 fi
 
+if [ -e "$(dirname $0)/root/.bg.jpg" ]; then
+	mkdir -p /root
+	cp -ra $(dirname $0)/root/.bg.jpg /root
+	echo 30 restore $(dirname $0)/root/.bg.jpg
+fi
+
 $(dirname $0)/nodes.sh
 
 echo "Warning! You must modify fstab to match your actual configuration."
