@@ -253,6 +253,12 @@ if [ -e "$(dirname $0)/root/.bg.jpg" ]; then
 	echo 30 restore $(dirname $0)/root/.bg.jpg
 fi
 
+if [ -e "$(dirname $0)/root/.config/fish/config.fish" ]; then
+	mkdir -p /root/.config/fish
+	cp -ra $(dirname $0)/root/.config/fish/config.fish /root/.config/fish
+	echo 30 restore $(dirname $0)/root/.config/fish/config.fish
+fi
+
 $(dirname $0)/nodes.sh
 
 echo "Warning! You must modify fstab to match your actual configuration."

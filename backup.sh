@@ -365,6 +365,12 @@ if [ -e "/root/.bg.jpg" ]; then
 	echo 35 /root/.bg.jpg
 fi
 
+if [ -e "/root/.config/fish/config.fish" ]; then
+	mkdir -p $(dirname $0)/root/.config/fish
+	cp /root/.config/fish/config.fish $(dirname $0)/root/.config/fish
+	echo 36 config.fish
+fi
+
 echo "please make fstab done"
 
 else
