@@ -240,6 +240,13 @@ else
 	echo "28 undo containers"
 fi
 
+if [ -e "$(dirname $0)/etc/kernel/cmdline" ]; then
+	mkdir -p /etc/kernel
+	cp -ra $(dirname $0)/etc/kernel/cmdline /etc/kernel
+	echo 29 restore cmdline
+	proxmox-boot-tool refresh
+fi
+
 $(dirname $0)/nodes.sh
 
 echo "Warning! You must modify fstab to match your actual configuration."

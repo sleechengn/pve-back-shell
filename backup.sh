@@ -353,6 +353,12 @@ else
 	echo "33 undo containers"
 fi
 
+if [ -e "/etc/kernel/cmdline" ]; then
+	mkdir -p $(dirname $0)/etc/kernel
+	cp -ra /etc/kernel/cmdline $(dirname $0)/etc/kernel
+	echo 34 /etc/kernel/cmdline
+fi
+
 echo "please make fstab done"
 
 else
