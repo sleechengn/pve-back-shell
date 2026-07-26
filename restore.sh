@@ -264,6 +264,20 @@ if [ -e "$(dirname $0)/usr/bin/e" ]; then
 	cp -ra $(dirname $0)/usr/bin/e /usr/bin
 	echo 31 restore $(dirname $0)/e
 fi
+if [ -e "$(dirname $0)/etc/systemd/system/udr.service" ]; then
+	mkdir -p /etc/systemd/system
+	cp -ra $(dirname $0)/etc/systemd/system/udr.service /etc/systemd/system
+	if [ -e "/opt/udr/udr.sh" ] || [ -e "$(dirname $0)/opt/udr/udr.sh" ]; then
+		systemctl enable --now udr
+	fi
+	echo "32 restore /etc/systemd/system/udr.service"
+fi
+if [ -e "$(dirname $0)/etc/systemd/system/fbi.service" ]; then
+	mkdir -p /etc/systemd/system
+	echo "33 restore /etc/systemd/system/fbi.service"
+	cp -ra $(dirname $0)/etc/systemd/system/fbi.service /etc/systemd/system
+	systemctl enable fbi
+fi
 $(dirname $0)/nodes.sh
 
 echo "Warning! You must modify fstab to match your actual configuration."

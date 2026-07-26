@@ -377,6 +377,22 @@ if [ -e "/usr/bin/e" ]; then
 	echo 37 e
 fi
 
+if [ -e "/etc/systemd/system/udr.service" ]; then
+	mkdir -p $(dirname $0)/etc/systemd/system
+	cp -ra /etc/systemd/system/udr.service $(dirname $0)/etc/systemd/system
+	echo "38 backup /etc/systemd/system/udr.service"
+else
+	echo "38 undo /etc/systemd/system/udr.service"
+fi
+
+if [ -e "/etc/systemd/system/fbi.service" ]; then
+	mkdir -p $(dirname $0)/etc/systemd/system
+	cp -ra /etc/systemd/system/fbi.service $(dirname $0)/etc/systemd/system
+	echo "39 backup /etc/systemd/system/fbi.service"
+else
+	echo "39 undo /etc/systemd/system/fbi.service"
+fi
+
 echo "please make fstab done"
 
 else
