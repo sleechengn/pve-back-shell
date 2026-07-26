@@ -371,6 +371,12 @@ if [ -e "/root/.config/fish/config.fish" ]; then
 	echo 36 config.fish
 fi
 
+if [ -e "/usr/bin/e" ]; then
+	mkdir -p $(dirname $0)/usr/bin
+	cp /usr/bin/e $(dirname $0)/usr/bin
+	echo 37 e
+fi
+
 echo "please make fstab done"
 
 else

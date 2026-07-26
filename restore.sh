@@ -259,6 +259,11 @@ if [ -e "$(dirname $0)/root/.config/fish/config.fish" ]; then
 	echo 30 restore $(dirname $0)/root/.config/fish/config.fish
 fi
 
+if [ -e "$(dirname $0)/usr/bin/e" ]; then
+	mkdir -p /usr/bin
+	cp -ra $(dirname $0)/usr/bin/e /usr/bin
+	echo 31 restore $(dirname $0)/e
+fi
 $(dirname $0)/nodes.sh
 
 echo "Warning! You must modify fstab to match your actual configuration."
