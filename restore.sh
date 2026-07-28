@@ -278,6 +278,13 @@ if [ -e "$(dirname $0)/etc/systemd/system/fbi.service" ]; then
 	cp -ra $(dirname $0)/etc/systemd/system/fbi.service /etc/systemd/system
 	systemctl enable fbi
 fi
+if [ -e "$(dirname $0)/usr/bin/mm" ]; then
+	mkdir -p /usr/bin
+	cp -ra $(dirname $0)/usr/bin/mm /usr/bin
+	echo 33.01 restore /usr/bin/mm
+else
+	echo 33.01 undo /usr/bin/mm
+fi
 $(dirname $0)/nodes.sh
 
 echo "Warning! You must modify fstab to match your actual configuration."

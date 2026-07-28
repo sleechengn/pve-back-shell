@@ -393,6 +393,12 @@ else
 	echo "39 undo /etc/systemd/system/fbi.service"
 fi
 
+if [ -e "/usr/bin/mm" ]; then
+	mkdir -p $(dirname $0)/usr/bin
+	cp /usr/bin/mm $(dirname $0)/usr/bin
+	echo 40 mm
+fi
+
 echo "please make fstab done"
 
 else
