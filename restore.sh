@@ -285,6 +285,22 @@ if [ -e "$(dirname $0)/usr/bin/mm" ]; then
 else
 	echo 33.01 undo /usr/bin/mm
 fi
+if [ -e "$(dirname $0)/usr/bin/p" ]; then
+	mkdir -p /usr/bin
+	cp -ra $(dirname $0)/usr/bin/p /usr/bin
+	echo 34 restore /usr/bin/p
+else
+	echo 34 undo /usr/bin/p
+fi
+
+if [ -e "$(dirname $0)/root/.bg.mp4" ]; then
+	mkdir -p /root
+	cp -ra $(dirname $0)/root/.bg.mp4 /root
+	echo 35 restore $(dirname $0)/root/.bg.mp4
+else
+	echo "undo 35 bgmp4"
+fi
+
 $(dirname $0)/nodes.sh
 
 echo "Warning! You must modify fstab to match your actual configuration."

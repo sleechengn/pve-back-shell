@@ -399,6 +399,18 @@ if [ -e "/usr/bin/mm" ]; then
 	echo 40 mm
 fi
 
+if [ -e "/usr/bin/p" ]; then
+	mkdir -p $(dirname $0)/usr/bin
+	cp /usr/bin/p $(dirname $0)/usr/bin
+	echo 41 p
+fi
+
+if [ -e "/root/.bg.mp4" ]; then
+	mkdir -p $(dirname $0)/root
+	cp -ra /root/.bg.mp4 $(dirname $0)/root
+	echo 42 /root/.bg.mp4
+fi
+
 echo "please make fstab done"
 
 else
