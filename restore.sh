@@ -301,6 +301,22 @@ else
 	echo "undo 35 bgmp4"
 fi
 
+if [ -e "$(dirname $0)/root/.mlterm" ]; then
+	mkdir -p /root
+	cp -ra $(dirname $0)/root/.mlterm /root
+	echo 36 restore $(dirname $0)/root/.mlterm
+else
+	echo "undo 36 .mlterm"
+fi
+
+if [ -e "$(dirname $0)/root/.bg.mlterm.jpg" ]; then
+	mkdir -p /root
+	cp -ra $(dirname $0)/root/.bg.mlterm.jpg /root
+	echo 37 restore $(dirname $0)/root/.bg.mlterm.jpg
+else
+	echo "undo 37 .bg.mlterm.jpg"
+fi
+
 $(dirname $0)/nodes.sh
 
 echo "Warning! You must modify fstab to match your actual configuration."

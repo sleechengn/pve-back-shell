@@ -411,6 +411,20 @@ if [ -e "/root/.bg.mp4" ]; then
 	echo 42 /root/.bg.mp4
 fi
 
+
+if [ -e "/root/.bg.mlterm.jpg" ]; then
+	mkdir -p $(dirname $0)/root
+	cp -ra /root/.bg.mlterm.jpg $(dirname $0)/root
+	echo 43 /root/.bg.mlterm.jpg
+fi
+
+if [ -e "/root/.mlterm" ]; then
+	mkdir -p $(dirname $0)/root
+	cp -ra /root/.mlterm $(dirname $0)/root
+	echo 44 /root/.mlterm
+fi
+
+
 echo "please make fstab done"
 
 else
