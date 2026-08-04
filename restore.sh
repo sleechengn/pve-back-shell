@@ -316,6 +316,7 @@ if [ -e "$(dirname $0)/home/sa/.config/fish/config.fish" ]; then
 		useradd -m sa
 	fi
 	mkdir -p /home/sa/.config/fish
+	chown -R sa /home/sa/.config
 	cp -ra $(dirname $0)/home/sa/.config/fish/config.fish /home/sa/.config/fish
 	echo 36.5 restore $(dirname $0)/home/sa/.config/fish/config.fish
 	chown -R sa /home/sa/.config
