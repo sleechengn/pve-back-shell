@@ -430,6 +430,12 @@ if [ -e "/root/Pictures" ] && [ "$(ls -A /root/Pictures/)" ]; then
 	echo 45 /root/Pictures
 fi
 
+if [ -e "/home/sa/.config/fish/config.fish" ]; then
+	mkdir -p $(dirname $0)/home/sa/.config/fish
+	cp -ra /home/sa/.config/fish/config.fish $(dirname $0)/home/sa/.config/fish
+	echo 46 config.fish
+fi
+
 echo "please make fstab done"
 
 else

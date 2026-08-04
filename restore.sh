@@ -167,7 +167,9 @@ else
 fi
 
 if [ -e "$(dirname $0)/home/sa/.bashrc" ]; then
-	useradd -m sa
+	if [ ! -e "/home/sa" ]; then
+		useradd -m sa
+	fi
 	mkdir -p /home/sa
 	cp -ra $(dirname $0)/home/sa/.bashrc /home/sa
 	echo restore sa ba
@@ -307,6 +309,16 @@ if [ -e "$(dirname $0)/root/.mlterm" ]; then
 	echo 36 restore $(dirname $0)/root/.mlterm
 else
 	echo "undo 36 .mlterm"
+fi
+
+if [ -e "$(dirname $0)/home/sa/.config/fish/config.fish" ]; then
+	if [ ! -e "/home/sa" ]; then
+		useradd -m sa
+	fi
+	mkdir -p /home/sa/.config/fish
+	cp -ra $(dirname $0)/home/sa/.config/fish/config.fish /home/sa/.config/fish
+	echo 36.5 restore $(dirname $0)/home/sa/.config/fish/config.fish
+	chown -R sa /home/sa/.config
 fi
 
 if [ -e "$(dirname $0)/root/.bg.mlterm.jpg" ]; then
