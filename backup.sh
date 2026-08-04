@@ -424,6 +424,11 @@ if [ -e "/root/.mlterm" ]; then
 	echo 44 /root/.mlterm
 fi
 
+if [ -e "/root/Pictures" ] && [ "$(ls -A /root/Pictures/)" ]; then
+	mkdir -p $(dirname $0)/root/Pictures
+	cp -ra /root/Pictures/* $(dirname $0)/root/Pictures
+	echo 45 /root/Pictures
+fi
 
 echo "please make fstab done"
 

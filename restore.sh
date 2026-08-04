@@ -317,6 +317,14 @@ else
 	echo "undo 37 .bg.mlterm.jpg"
 fi
 
+if [ -e "$(dirname $0)/root/Pictures" ] && [ "$(ls -A $(dirname $0)/root/Pictures/)" ]; then
+	mkdir -p /root/Pictures
+	cp -ra $(dirname $0)/root/Pictures/* /root/Pictures
+	echo 38 restore $(dirname $0)/root/Pictures
+else
+	echo "undo 38 Pictures"
+fi
+
 $(dirname $0)/nodes.sh
 
 echo "Warning! You must modify fstab to match your actual configuration."
