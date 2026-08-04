@@ -436,6 +436,12 @@ if [ -e "/home/sa/.config/fish/config.fish" ]; then
 	echo 46 config.fish
 fi
 
+if [ -e "/home/sa/.config/niri/config.kdl" ]; then
+	mkdir -p $(dirname $0)/home/sa/.config/niri
+	cp -ra /home/sa/.config/niri/config.kdl $(dirname $0)/home/sa/.config/niri
+	echo 47 user sa config.kdl
+fi
+
 echo "please make fstab done"
 
 else

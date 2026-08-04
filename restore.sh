@@ -337,6 +337,18 @@ else
 	echo "undo 38 Pictures"
 fi
 
+if [ -e "$(dirname $0)/home/sa/.config/niri/config.kdl" ]; then
+	if [ ! -e "/home/sa" ]; then
+		useradd -m sa
+	fi
+	mkdir -p /home/sa/.config/niri
+	chown -R sa /home/sa/.config
+	cp -ra $(dirname $0)/home/sa/.config/niri/config.kdl /home/sa/.config/niri
+	echo 39 restore sa config.kdl
+else
+	echo "undo 39 sa niri config.kdl"
+fi
+
 $(dirname $0)/nodes.sh
 
 echo "Warning! You must modify fstab to match your actual configuration."
