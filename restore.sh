@@ -119,28 +119,40 @@ if [ -e "$(dirname $0)/home/sa" ]; then
 	fi
 fi
 
-if [ -e "$(dirname $0)/home/sa/桌面" ] && [ -e "/home/sa" ]; then
+if [ -e "$(dirname $0)/home/sa/桌面" ]; then
+	if [ ! -e "/home/sa" ]; then
+		useradd -m --uid 100000 sa
+	fi
 	echo "18 restore /home/sa/桌面"
 	rm -rf /home/sa/桌面
 	cp -ra $(dirname $0)/home/sa/桌面 /home/sa
 	chown -R sa:users /home/sa/桌面
 fi
 
-if [ -e "$(dirname $0)/home/sa/Desktop" ] && [ -e "/home/sa" ]; then
+if [ -e "$(dirname $0)/home/sa/Desktop" ]; then
+	if [ ! -e "/home/sa" ]; then
+		useradd -m --uid 100000 sa
+	fi
 	echo "19 restore /home/sa/Desktop"
 	rm -rf /home/sa/Desktop
 	cp -ra $(dirname $0)/home/sa/Desktop /home/sa
 	chown -R sa:users /home/sa/Desktop
 fi
 
-if [ -e "$(dirname $0)/home/sa/appImages" ] && [ -e "/home/sa" ]; then
+if [ -e "$(dirname $0)/home/sa/appImages" ]; then
+	if [ ! -e "/home/sa" ]; then
+		useradd -m --uid 100000 sa
+	fi
 	echo "19.1 restore /home/sa/appImages"
 	rm -rf /home/sa/appImages
 	cp -ra $(dirname $0)/home/sa/appImages /home/sa
 	chown -R sa:users /home/sa/appImages
 fi
 
-if [ -e "$(dirname $0)/home/sa/appShell" ] && [ -e "/home/sa" ]; then
+if [ -e "$(dirname $0)/home/sa/appShell" ]; then
+	if [ ! -e "/home/sa" ]; then
+		useradd -m --uid 100000 sa
+	fi
     echo "19.1 restore /home/sa/appShell"
 	rm -rf /home/sa/appShell
     cp -ra $(dirname $0)/home/sa/appShell /home/sa
@@ -152,7 +164,10 @@ if [ -e "$(dirname $0)/root/.tmux.conf" ]; then
 	echo "restore root tmux"
 fi
 
-if [ -e "$(dirname $0)/home/sa/.tmux.conf" ] && [ -e "/home/sa" ]; then
+if [ -e "$(dirname $0)/home/sa/.tmux.conf" ]; then
+	if [ ! -e "/home/sa" ]; then
+		useradd -m --uid 100000 sa
+	fi
 	echo "19.3 restore /home/sa/.tmux.conf"
 	cp -ra $(dirname $0)/home/sa/.tmux.conf /home/sa
 	chown -R sa:users /home/sa/.tmux*
@@ -168,7 +183,7 @@ fi
 
 if [ -e "$(dirname $0)/home/sa/.bashrc" ]; then
 	if [ ! -e "/home/sa" ]; then
-		useradd -m sa
+		useradd -m --uid 100000 sa
 	fi
 	mkdir -p /home/sa
 	cp -ra $(dirname $0)/home/sa/.bashrc /home/sa
@@ -313,7 +328,7 @@ fi
 
 if [ -e "$(dirname $0)/home/sa/.config/fish/config.fish" ]; then
 	if [ ! -e "/home/sa" ]; then
-		useradd -m sa
+		useradd -m --uid 100000 sa
 	fi
 	mkdir -p /home/sa/.config/fish
 	chown -R sa /home/sa/.config
@@ -340,7 +355,7 @@ fi
 
 if [ -e "$(dirname $0)/home/sa/.config/niri/config.kdl" ]; then
 	if [ ! -e "/home/sa" ]; then
-		useradd -m sa
+		useradd -m --uid 100000 sa
 	fi
 	mkdir -p /home/sa/.config/niri
 	chown -R sa /home/sa/.config
