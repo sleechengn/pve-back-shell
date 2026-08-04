@@ -360,7 +360,7 @@ if [ -e "$(dirname $0)/home/sa/.config/niri/config.kdl" ]; then
 	mkdir -p /home/sa/.config/niri
 	chown -R sa /home/sa/.config
 	cp -ra $(dirname $0)/home/sa/.config/niri/config.kdl /home/sa/.config/niri
-	echo 39 restore sa config.kdl
+	echo 39 restore /home/sa/.config/niri/config.kdl
 else
 	echo "undo 39 sa niri config.kdl"
 fi
