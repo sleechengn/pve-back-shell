@@ -442,6 +442,18 @@ if [ -e "/home/sa/.config/niri/config.kdl" ]; then
 	echo 47 user sa config.kdl
 fi
 
+if [ -e "/root/.profile" ]; then
+	mkdir -p $(dirname $0)/root
+	cp -ra /root/.profile $(dirname $0)/root
+	echo 48 /root/.profile
+fi
+
+if [ -e "/home/sa/.profile" ]; then
+	mkdir -p $(dirname $0)/home/sa
+	cp -ra /home/sa/.profile $(dirname $0)/home/sa
+	echo 49 user sa profile
+fi
+
 echo "please make fstab done"
 
 else

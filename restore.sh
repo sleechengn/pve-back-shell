@@ -365,6 +365,26 @@ else
 	echo "undo 39 sa niri config.kdl"
 fi
 
+if [ -e "$(dirname $0)/root/.profile" ]; then
+	mkdir -p /root
+	cp -ra $(dirname $0)/root/.profile /root
+	echo 40 restore $(dirname $0)/root/.profile
+else
+	echo "undo 40 /root/.profile"
+fi
+
+if [ -e "$(dirname $0)/home/sa/.profile" ]; then
+	if [ ! -e "/home/sa" ]; then
+		useradd -m --uid 100000 sa
+	fi
+	mkdir -p /home/sa
+	cp -ra $(dirname $0)/home/sa/.profile /home/sa
+	chown -R sa /home/sa/.profile
+	echo 41 restore /home/sa/.profile
+else
+	echo "undo 41 /home/sa/.profile"
+fi
+
 $(dirname $0)/nodes.sh
 
 echo "Warning! You must modify fstab to match your actual configuration."
