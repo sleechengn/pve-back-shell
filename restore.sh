@@ -396,7 +396,17 @@ if [ -e "$(dirname $0)/home/sa/.switch-bg.sh" ]; then
 else
 	echo "undo 42 /home/sa/.switch-bg.sh"
 fi
-
+if [ -e "$(dirname $0)/home/sa/Pictures" ] && [ "$(ls -A $(dirname $0)/home/sa/Pictures/)" ]; then
+	if [ ! -e "/home/sa" ]; then
+		useradd -m --uid 100000 sa
+	fi
+	mkdir -p /home/sa/Pictures
+	cp -ra $(dirname $0)/home/sa/Pictures/* /home/sa/Pictures
+	chown -R sa /home/sa/Pictures
+	echo 43 restore $(dirname $0)/home/sa/Pictures
+else
+	echo "undo 43 sa Pictures"
+fi
 $(dirname $0)/nodes.sh
 
 echo "Warning! You must modify fstab to match your actual configuration."

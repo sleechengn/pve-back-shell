@@ -460,6 +460,12 @@ if [ -e "/home/sa/.switch-bg.sh" ]; then
 	echo 50 user sa /home/sa/.switch-bg.sh
 fi
 
+if [ -e "/home/sa/Pictures" ] && [ "$(ls -A /home/sa/Pictures/)" ]; then
+	mkdir -p $(dirname $0)/home/sa/Pictures
+	cp -ra /home/sa/Pictures/* $(dirname $0)/home/sa/Pictures
+	echo 51 /home/sa/Pictures
+fi
+
 echo "please make fstab done"
 
 else
