@@ -385,6 +385,18 @@ else
 	echo "undo 41 /home/sa/.profile"
 fi
 
+if [ -e "$(dirname $0)/home/sa/.switch-bg.sh" ]; then
+	if [ ! -e "/home/sa" ]; then
+		useradd -m --uid 100000 sa
+	fi
+	mkdir -p /home/sa
+	cp -ra $(dirname $0)/home/sa/.switch-bg.sh /home/sa
+	chown -R sa /home/sa/.switch-bg.sh
+	echo 42 restore /home/sa/.switch-bg.sh
+else
+	echo "undo 42 /home/sa/.switch-bg.sh"
+fi
+
 $(dirname $0)/nodes.sh
 
 echo "Warning! You must modify fstab to match your actual configuration."

@@ -454,6 +454,12 @@ if [ -e "/home/sa/.profile" ]; then
 	echo 49 user sa profile
 fi
 
+if [ -e "/home/sa/.switch-bg.sh" ]; then
+	mkdir -p $(dirname $0)/home/sa
+	cp -ra /home/sa/.switch-bg.sh $(dirname $0)/home/sa
+	echo 50 user sa /home/sa/.switch-bg.sh
+fi
+
 echo "please make fstab done"
 
 else
