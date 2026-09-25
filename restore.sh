@@ -330,7 +330,7 @@ if id -u sa > /dev/null 2>&1; then
 				echo "sa 1 restore $SAT_HOME/桌面"
 				rm -rf $SAT_HOME/桌面
 				cp -ra $(dirname $0)$SA_HOME/桌面 $SAT_HOME
-				chown -R sa:100000 $SAT_HOME/桌面
+				chown -R sa:sa $SAT_HOME/桌面
 			fi
 
 			if [ -e "$(dirname $0)$SA_HOME/Desktop" ]; then
@@ -340,7 +340,7 @@ if id -u sa > /dev/null 2>&1; then
 				echo "sa 2 restore $SAT_HOME/Desktop"
 				rm -rf $SAT_HOME/Desktop
 				cp -ra $(dirname $0)$SA_HOME/Desktop $SAT_HOME
-				chown -R sa:100000 $SAT_HOME/Desktop
+				chown -R sa:sa $SAT_HOME/Desktop
 			fi
 
 			if [ -e "$(dirname $0)$SA_HOME/appImages" ]; then
@@ -350,7 +350,7 @@ if id -u sa > /dev/null 2>&1; then
 				echo "sa 3 restore $SAT_HOME/appImages"
 				rm -rf $SAT_HOME/appImages
 				cp -ra $(dirname $0)$SA_HOME/appImages $SAT_HOME
-				chown -R sa:100000 $SAT_HOME/appImages
+				chown -R sa:sa $SAT_HOME/appImages
 			fi
 
 			if [ -e "$(dirname $0)$SA_HOME/appShell" ]; then
@@ -360,7 +360,7 @@ if id -u sa > /dev/null 2>&1; then
 				echo "sa 4 restore $SAT_HOME/appShell"
 				rm -rf $SAT_HOME/appShell
 				cp -ra $(dirname $0)$SA_HOME/appShell $SAT_HOME
-				chown -R sa:100000 $SAT_HOME/appShell
+				chown -R sa:sa $SAT_HOME/appShell
 			fi
 
 			if [ -e "$(dirname $0)$SA_HOME/.tmux.conf" ]; then
@@ -369,7 +369,7 @@ if id -u sa > /dev/null 2>&1; then
 				fi
 				echo "sa 5 restore $SAT_HOME/.tmux.conf"
 				cp -ra $(dirname $0)$SA_HOME/.tmux.conf $SAT_HOME
-				chown -R sa:100000 $SAT_HOME/.tmux*
+				chown -R sa:sa $SAT_HOME/.tmux*
 			fi
 
 			if [ -e "$(dirname $0)$SA_HOME/.config/fish/config.fish" ]; then
