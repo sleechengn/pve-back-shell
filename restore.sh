@@ -314,7 +314,8 @@ else
 fi
 
 # sa ------------------------------------------------------------------
-if ! getent group sa > /dev/null 2>&1; then 
+
+if ! getent group sa > /dev/null 2>&1; then
 	groupadd --gid 100000 sa
 else
 	if [ ! $(getent group sa|cut -d: -f3) -eq 100000 ]; then
