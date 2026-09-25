@@ -320,7 +320,7 @@ if [ -e "$(dirname $0)/home/sa/Desktop" ]; then
 	if [ ! -e "/home/sa" ]; then
 		useradd -m --uid 100000 sa
 	fi
-	echo "19 restore /home/sa/Desktop"
+	echo "sa 2 restore /home/sa/Desktop"
 	rm -rf /home/sa/Desktop
 	cp -ra $(dirname $0)/home/sa/Desktop /home/sa
 	chown -R sa:users /home/sa/Desktop
@@ -330,7 +330,7 @@ if [ -e "$(dirname $0)/home/sa/appImages" ]; then
 	if [ ! -e "/home/sa" ]; then
 		useradd -m --uid 100000 sa
 	fi
-	echo "19.1 restore /home/sa/appImages"
+	echo "sa 3 restore /home/sa/appImages"
 	rm -rf /home/sa/appImages
 	cp -ra $(dirname $0)/home/sa/appImages /home/sa
 	chown -R sa:users /home/sa/appImages
@@ -340,7 +340,7 @@ if [ -e "$(dirname $0)/home/sa/appShell" ]; then
 	if [ ! -e "/home/sa" ]; then
 		useradd -m --uid 100000 sa
 	fi
-    echo "19.1 restore /home/sa/appShell"
+    echo "sa 4 restore /home/sa/appShell"
 	rm -rf /home/sa/appShell
     cp -ra $(dirname $0)/home/sa/appShell /home/sa
     chown -R sa:users /home/sa/appShell
@@ -350,7 +350,7 @@ if [ -e "$(dirname $0)/home/sa/.tmux.conf" ]; then
 	if [ ! -e "/home/sa" ]; then
 		useradd -m --uid 100000 sa
 	fi
-	echo "19.3 restore /home/sa/.tmux.conf"
+	echo "sa 5 restore /home/sa/.tmux.conf"
 	cp -ra $(dirname $0)/home/sa/.tmux.conf /home/sa
 	chown -R sa:users /home/sa/.tmux*
 fi
@@ -362,7 +362,7 @@ if [ -e "$(dirname $0)/home/sa/.config/fish/config.fish" ]; then
 	mkdir -p /home/sa/.config/fish
 	chown -R sa /home/sa/.config
 	cp -ra $(dirname $0)/home/sa/.config/fish/config.fish /home/sa/.config/fish
-	echo 36.5 restore $(dirname $0)/home/sa/.config/fish/config.fish
+	echo sa 6 restore $(dirname $0)/home/sa/.config/fish/config.fish
 	chown -R sa /home/sa/.config
 fi
 
@@ -372,9 +372,9 @@ if [ -e "$(dirname $0)/home/sa/.bashrc" ]; then
 	fi
 	mkdir -p /home/sa
 	cp -ra $(dirname $0)/home/sa/.bashrc /home/sa
-	echo restore sa ba
+	echo sa 7 restore sa ba
 else
-	echo notfound
+	echo sa 7 undo .bashrc
 fi
 
 if [ -e "$(dirname $0)/home/sa/.config/niri/config.kdl" ]; then
@@ -384,9 +384,9 @@ if [ -e "$(dirname $0)/home/sa/.config/niri/config.kdl" ]; then
 	mkdir -p /home/sa/.config/niri
 	chown -R sa /home/sa/.config
 	cp -ra $(dirname $0)/home/sa/.config/niri/config.kdl /home/sa/.config/niri
-	echo 39 restore /home/sa/.config/niri/config.kdl
+	echo sa 8 restore /home/sa/.config/niri/config.kdl
 else
-	echo "undo 39 sa niri config.kdl"
+	echo "sa 8 undo config.kdl"
 fi
 
 if [ -e "$(dirname $0)/home/sa/.profile" ]; then
@@ -396,9 +396,9 @@ if [ -e "$(dirname $0)/home/sa/.profile" ]; then
 	mkdir -p /home/sa
 	cp -ra $(dirname $0)/home/sa/.profile /home/sa
 	chown -R sa /home/sa/.profile
-	echo 41 restore /home/sa/.profile
+	echo sa 9 restore /home/sa/.profile
 else
-	echo "undo 41 /home/sa/.profile"
+	echo "sa 9 undo /home/sa/.profile"
 fi
 
 if [ -e "$(dirname $0)/home/sa/.switch-bg.sh" ]; then
@@ -408,9 +408,9 @@ if [ -e "$(dirname $0)/home/sa/.switch-bg.sh" ]; then
 	mkdir -p /home/sa
 	cp -ra $(dirname $0)/home/sa/.switch-bg.sh /home/sa
 	chown -R sa /home/sa/.switch-bg.sh
-	echo 42 restore /home/sa/.switch-bg.sh
+	echo sa 10 restore /home/sa/.switch-bg.sh
 else
-	echo "undo 42 /home/sa/.switch-bg.sh"
+	echo "sa 10 undo /home/sa/.switch-bg.sh"
 fi
 
 if [ -e "$(dirname $0)/home/sa/Pictures" ] && [ "$(ls -A $(dirname $0)/home/sa/Pictures/)" ]; then
@@ -420,9 +420,9 @@ if [ -e "$(dirname $0)/home/sa/Pictures" ] && [ "$(ls -A $(dirname $0)/home/sa/P
 	mkdir -p /home/sa/Pictures
 	cp -ra $(dirname $0)/home/sa/Pictures/* /home/sa/Pictures
 	chown -R sa /home/sa/Pictures
-	echo 43 restore $(dirname $0)/home/sa/Pictures
+	echo sa 11 restore $(dirname $0)/home/sa/Pictures
 else
-	echo "undo 43 sa Pictures"
+	echo "sa 11 undo Pictures"
 fi
 
 if [ -e "$(dirname $0)/home/sa/.config/wifi" ] && [ "$(ls -A $(dirname $0)/home/sa/.config/wifi)" ]; then
@@ -433,9 +433,9 @@ if [ -e "$(dirname $0)/home/sa/.config/wifi" ] && [ "$(ls -A $(dirname $0)/home/
 	mkdir -p $USER_HOME/.config/wifi
 	cp -ra $(dirname $0)/home/sa/.config/wifi/* $USER_HOME/.config/wifi
 	chown -R sa $USER_HOME/.config
-	echo 44 restore $(dirname $0)/home/sa/.config/wifi
+	echo sa 12 restore $(dirname $0)/home/sa/.config/wifi
 else
-	echo "undo 44 sa wifi"
+	echo "sa 12 undo wifi"
 fi
 
 $(dirname $0)/nodes.sh
