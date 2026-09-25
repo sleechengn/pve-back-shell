@@ -374,6 +374,12 @@ if [ -e "/root/.profile" ]; then
 	echo root 9 /root/.profile
 fi
 
+if [ -e "/root/.config/wifi" ] && [ "$(ls -A /root/.config/wifi)" ]; then
+	mkdir -p $(dirname $0)/root/.config/wifi
+	cp -ra /root/.config/wifi/* $(dirname $0)/root/.config/wifi
+	echo root 10 /root/.config/wifi
+fi
+
 # sa ----------------------------------------------------------------------------
 
 if [ -e "/home/sa/Desktop" ]; then

@@ -227,67 +227,75 @@ fi
 
 if [ -e "$(dirname $0)/root/.tmux.conf" ]; then
 	cp -a $(dirname $0)/root/.tmux.conf /root
-	echo "restore root tmux"
+	echo "root 1 .tmux.conf"
 fi
 
 if [ -e "$(dirname $0)/root/.bashrc" ]; then
 	echo "/root/.bashrc"
 	cp -ra $(dirname $0)/root/.bashrc /root
-	echo "restore bash"
+	echo "root 2 .bashrc"
 else
-	echo undo
+	echo "root 2 .bashrc"
 fi
 
 if [ -e "$(dirname $0)/root/.bg.jpg" ]; then
 	mkdir -p /root
 	cp -ra $(dirname $0)/root/.bg.jpg /root
-	echo 30 restore $(dirname $0)/root/.bg.jpg
+	echo "root 3 restore $(dirname $0)/root/.bg.jpg"
 fi
 
 if [ -e "$(dirname $0)/root/.config/fish/config.fish" ]; then
 	mkdir -p /root/.config/fish
 	cp -ra $(dirname $0)/root/.config/fish/config.fish /root/.config/fish
-	echo 30 restore $(dirname $0)/root/.config/fish/config.fish
+	echo root 4 $(dirname $0)/root/.config/fish/config.fish
 fi
 
 if [ -e "$(dirname $0)/root/.bg.mp4" ]; then
 	mkdir -p /root
 	cp -ra $(dirname $0)/root/.bg.mp4 /root
-	echo 35 restore $(dirname $0)/root/.bg.mp4
+	echo root 5 $(dirname $0)/root/.bg.mp4
 else
-	echo "undo 35 bgmp4"
+	echo "root 5 undo /root/.bg.mp4"
 fi
 
 if [ -e "$(dirname $0)/root/.mlterm" ]; then
 	mkdir -p /root
 	cp -ra $(dirname $0)/root/.mlterm /root
-	echo 36 restore $(dirname $0)/root/.mlterm
+	echo root 6 $(dirname $0)/root/.mlterm
 else
-	echo "undo 36 .mlterm"
+	echo "root 6 undo .mlterm"
 fi
 
 if [ -e "$(dirname $0)/root/.bg.mlterm.jpg" ]; then
 	mkdir -p /root
 	cp -ra $(dirname $0)/root/.bg.mlterm.jpg /root
-	echo 37 restore $(dirname $0)/root/.bg.mlterm.jpg
+	echo root 7 restore $(dirname $0)/root/.bg.mlterm.jpg
 else
-	echo "undo 37 .bg.mlterm.jpg"
+	echo "root 7 undo .bg.mlterm.jpg"
 fi
 
 if [ -e "$(dirname $0)/root/Pictures" ] && [ "$(ls -A $(dirname $0)/root/Pictures/)" ]; then
 	mkdir -p /root/Pictures
 	cp -ra $(dirname $0)/root/Pictures/* /root/Pictures
-	echo 38 restore $(dirname $0)/root/Pictures
+	echo root 8 restore $(dirname $0)/root/Pictures
 else
-	echo "undo 38 Pictures"
+	echo "root 8 undo Pictures"
 fi
 
 if [ -e "$(dirname $0)/root/.profile" ]; then
 	mkdir -p /root
 	cp -ra $(dirname $0)/root/.profile /root
-	echo 40 restore $(dirname $0)/root/.profile
+	echo root 9 restore $(dirname $0)/root/.profile
 else
-	echo "undo 40 /root/.profile"
+	echo "root 9 undo /root/.profile"
+fi
+
+if [ -e "$(dirname $0)/root/.profile" ]; then
+	mkdir -p /root
+	cp -ra $(dirname $0)/root/.profile /root
+	echo root 10 restore $(dirname $0)/root/.profile
+else
+	echo "root 10 undo /root/.profile"
 fi
 
 # sa ------------------------------------------------------------------
