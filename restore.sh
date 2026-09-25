@@ -98,17 +98,17 @@ fi
 
 if [ -e "$(dirname $0)/etc/nginx" ]; then
 	cp -ra $(dirname $0)/etc/nginx /etc
-	echo "16.2 restore /etc/nginx"
+	echo "17 restore /etc/nginx"
 fi
 
 if [ -e "$(dirname $0)/etc/systemd/system/ttyd.service" ]; then
-	echo "17 restore/etc/systemd/system/ttyd.service"
+	echo "18 restore/etc/systemd/system/ttyd.service"
     cp -ra $(dirname $0)/etc/systemd/system/ttyd.service /etc/systemd/system
     systemctl enable ttyd
 fi
 
 if [ -e "$(dirname $0)/etc/systemd/system/fbs.service" ]; then
-	echo "17.01 restore /etc/systemd/system/fbs.service"
+	echo "19 restore /etc/systemd/system/fbs.service"
     cp -ra $(dirname $0)/etc/systemd/system/fbs.service /etc/systemd/system
     systemctl enable fbs
 fi
@@ -188,7 +188,7 @@ fi
 if [ -e "$(dirname $0)/usr/bin/e" ]; then
 	mkdir -p /usr/bin
 	cp -ra $(dirname $0)/usr/bin/e /usr/bin
-	echo 31 restore $(dirname $0)/e
+	echo 30 restore $(dirname $0)/e
 fi
 
 if [ -e "$(dirname $0)/etc/systemd/system/udr.service" ]; then
@@ -197,12 +197,12 @@ if [ -e "$(dirname $0)/etc/systemd/system/udr.service" ]; then
 	if [ -e "/opt/udr/udr.sh" ] || [ -e "$(dirname $0)/opt/udr/udr.sh" ]; then
 		systemctl enable --now udr
 	fi
-	echo "32 restore /etc/systemd/system/udr.service"
+	echo "31 restore /etc/systemd/system/udr.service"
 fi
 
 if [ -e "$(dirname $0)/etc/systemd/system/fbi.service" ]; then
 	mkdir -p /etc/systemd/system
-	echo "33 restore /etc/systemd/system/fbi.service"
+	echo "32 restore /etc/systemd/system/fbi.service"
 	cp -ra $(dirname $0)/etc/systemd/system/fbi.service /etc/systemd/system
 	systemctl enable fbi
 fi
@@ -210,9 +210,9 @@ fi
 if [ -e "$(dirname $0)/usr/bin/mm" ]; then
 	mkdir -p /usr/bin
 	cp -ra $(dirname $0)/usr/bin/mm /usr/bin
-	echo 33.01 restore /usr/bin/mm
+	echo 33 restore /usr/bin/mm
 else
-	echo 33.01 undo /usr/bin/mm
+	echo 33 undo /usr/bin/mm
 fi
 
 if [ -e "$(dirname $0)/usr/bin/p" ]; then
