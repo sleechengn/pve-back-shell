@@ -314,7 +314,8 @@ else
 fi
 
 # sa ------------------------------------------------------------------
-if ! id -u sa > /dev/null 2>&1; then useradd -m --uid 100000 sa; fi
+if ! id -g sa > /dev/null 2>&1; then groupadd --gid 100000 sa; fi
+if ! id -u sa > /dev/null 2>&1; then useradd -m --uid 100000 -g sa sa; fi
 
 if id -u sa > /dev/null 2>&1; then
 	if [ -e "$(dirname $0)/etc/passwd" ]; then
