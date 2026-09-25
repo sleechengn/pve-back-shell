@@ -336,11 +336,7 @@ if id -u sa > /dev/null 2>&1; then
 		SA_HOME=$(cat $(dirname $0)/etc/passwd|grep "^sa:"|cut -d: -f6)
 		if [ "$SA_HOME" ]; then
 			SAT_HOME=$(getent passwd sa | cut -d: -f6)
-
 			if [ -e "$(dirname $0)$SA_HOME/桌面" ]; then
-				if [ ! -e "$SAT_HOME" ]; then
-					useradd -m --uid 100000 sa
-				fi
 				echo "sa 1 restore $SAT_HOME/桌面"
 				rm -rf $SAT_HOME/桌面
 				cp -ra $(dirname $0)$SA_HOME/桌面 $SAT_HOME
@@ -348,9 +344,6 @@ if id -u sa > /dev/null 2>&1; then
 			fi
 
 			if [ -e "$(dirname $0)$SA_HOME/Desktop" ]; then
-				if [ ! -e "$SAT_HOME" ]; then
-					useradd -m --uid 100000 sa
-				fi
 				echo "sa 2 restore $SAT_HOME/Desktop"
 				rm -rf $SAT_HOME/Desktop
 				cp -ra $(dirname $0)$SA_HOME/Desktop $SAT_HOME
@@ -358,9 +351,6 @@ if id -u sa > /dev/null 2>&1; then
 			fi
 
 			if [ -e "$(dirname $0)$SA_HOME/appImages" ]; then
-				if [ ! -e "$SAT_HOME" ]; then
-					useradd -m --uid 100000 sa
-				fi
 				echo "sa 3 restore $SAT_HOME/appImages"
 				rm -rf $SAT_HOME/appImages
 				cp -ra $(dirname $0)$SA_HOME/appImages $SAT_HOME
@@ -368,9 +358,6 @@ if id -u sa > /dev/null 2>&1; then
 			fi
 
 			if [ -e "$(dirname $0)$SA_HOME/appShell" ]; then
-				if [ ! -e "$SAT_HOME" ]; then
-					useradd -m --uid 100000 sa
-				fi
 				echo "sa 4 restore $SAT_HOME/appShell"
 				rm -rf $SAT_HOME/appShell
 				cp -ra $(dirname $0)$SA_HOME/appShell $SAT_HOME
@@ -378,18 +365,12 @@ if id -u sa > /dev/null 2>&1; then
 			fi
 
 			if [ -e "$(dirname $0)$SA_HOME/.tmux.conf" ]; then
-				if [ ! -e "$SAT_HOME" ]; then
-					useradd -m --uid 100000 sa
-				fi
 				echo "sa 5 restore $SAT_HOME/.tmux.conf"
 				cp -ra $(dirname $0)$SA_HOME/.tmux.conf $SAT_HOME
 				chown -R sa:sa $SAT_HOME/.tmux*
 			fi
 
 			if [ -e "$(dirname $0)$SA_HOME/.config/fish/config.fish" ]; then
-				if [ ! -e "$SAT_HOME" ]; then
-					useradd -m --uid 100000 sa
-				fi
 				mkdir -p $SAT_HOME/.config/fish
 				chown -R sa $SAT_HOME/.config
 				cp -ra $(dirname $0)$SA_HOME/.config/fish/config.fish $SAT_HOME/.config/fish
@@ -398,9 +379,6 @@ if id -u sa > /dev/null 2>&1; then
 			fi
 
 			if [ -e "$(dirname $0)$SA_HOME/.bashrc" ]; then
-				if [ ! -e "$SAT_HOME" ]; then
-					useradd -m --uid 100000 sa
-				fi
 				mkdir -p $SAT_HOME
 				cp -ra $(dirname $0)$SA_HOME/.bashrc $SAT_HOME
 				echo sa 7 restore sa ba
@@ -409,9 +387,6 @@ if id -u sa > /dev/null 2>&1; then
 			fi
 
 			if [ -e "$(dirname $0)$SA_HOME/.config/niri/config.kdl" ]; then
-				if [ ! -e "$SAT_HOME" ]; then
-					useradd -m --uid 100000 sa
-				fi
 				mkdir -p $SAT_HOME/.config/niri
 				chown -R sa $SAT_HOME/.config
 				cp -ra $(dirname $0)$SA_HOME/.config/niri/config.kdl $SAT_HOME/.config/niri
@@ -421,9 +396,6 @@ if id -u sa > /dev/null 2>&1; then
 			fi
 
 			if [ -e "$(dirname $0)$SA_HOME/.profile" ]; then
-				if [ ! -e "$SAT_HOME" ]; then
-					useradd -m --uid 100000 sa
-				fi
 				mkdir -p $SAT_HOME
 				cp -ra $(dirname $0)$SA_HOME/.profile $SAT_HOME
 				chown -R sa $SAT_HOME/.profile
@@ -433,9 +405,6 @@ if id -u sa > /dev/null 2>&1; then
 			fi
 
 			if [ -e "$(dirname $0)$SA_HOME/.switch-bg.sh" ]; then
-				if [ ! -e "$SAT_HOME" ]; then
-					useradd -m --uid 100000 sa
-				fi
 				mkdir -p $SAT_HOME
 				cp -ra $(dirname $0)$SA_HOME/.switch-bg.sh $SAT_HOME
 				chown -R sa $SAT_HOME/.switch-bg.sh
@@ -445,9 +414,6 @@ if id -u sa > /dev/null 2>&1; then
 			fi
 
 			if [ -e "$(dirname $0)$SA_HOME/Pictures" ] && [ "$(ls -A $(dirname $0)$SA_HOME/Pictures/)" ]; then
-				if [ ! -e "$SAT_HOME" ]; then
-					useradd -m --uid 100000 sa
-				fi
 				mkdir -p $SAT_HOME/Pictures
 				cp -ra $(dirname $0)$SA_HOME/Pictures/* $SAT_HOME/Pictures
 				chown -R sa $SAT_HOME/Pictures
@@ -457,9 +423,6 @@ if id -u sa > /dev/null 2>&1; then
 			fi
 
 			if [ -e "$(dirname $0)$SA_HOME/.config/wifi" ] && [ "$(ls -A $(dirname $0)$SA_HOME/.config/wifi)" ]; then
-				if ! id -u sa > /dev/null 2>&1; then
-					useradd -m --uid 100000 sa
-				fi
 				mkdir -p $SAT_HOME/.config/wifi
 				cp -ra $(dirname $0)$SA_HOME/.config/wifi/* $SAT_HOME/.config/wifi
 				chown -R sa $SAT_HOME/.config
