@@ -310,7 +310,7 @@ if [ -e "$(dirname $0)/home/sa/桌面" ]; then
 	if [ ! -e "/home/sa" ]; then
 		useradd -m --uid 100000 sa
 	fi
-	echo "18 restore /home/sa/桌面"
+	echo "sa 1 restore /home/sa/桌面"
 	rm -rf /home/sa/桌面
 	cp -ra $(dirname $0)/home/sa/桌面 /home/sa
 	chown -R sa:users /home/sa/桌面
