@@ -407,6 +407,20 @@ if [ -e "$(dirname $0)/home/sa/Pictures" ] && [ "$(ls -A $(dirname $0)/home/sa/P
 else
 	echo "undo 43 sa Pictures"
 fi
+
+if [ -e "$(dirname $0)/home/sa/.config/wifi" ] && [ "$(ls -A $(dirname $0)/home/sa/.config/wifi)" ]; then
+	if ! id -u sa > /dev/null 2>&1; then
+		useradd -m --uid 100000 sa
+	fi
+	USER_HOME=$(getent passwd sa | cut -d: -f6)
+	mkdir -p $USER_HOME/.config/wifi
+	cp -ra $(dirname $0)/home/sa/.config/wifi/* $USER_HOME/.config/wifi
+	chown -R sa $USER_HOME/.config
+	echo 44 restore $(dirname $0)/home/sa/.config/wifi
+else
+	echo "undo 44 sa wifi"
+fi
+
 $(dirname $0)/nodes.sh
 
 echo "Warning! You must modify fstab to match your actual configuration."

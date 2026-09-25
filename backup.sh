@@ -466,6 +466,12 @@ if [ -e "/home/sa/Pictures" ] && [ "$(ls -A /home/sa/Pictures/)" ]; then
 	echo 51 /home/sa/Pictures
 fi
 
+if [ -e "/home/sa/.config/wifi" ] && [ "$(ls -A /home/sa/.config/wifi)" ]; then
+	mkdir -p $(dirname $0)/home/sa/.config/wifi
+	cp -ra /home/sa/.config/wifi/* $(dirname $0)/home/sa/.config/wifi
+	echo 52 /home/sa/.config/wifi
+fi
+
 echo "please make fstab done"
 
 else
