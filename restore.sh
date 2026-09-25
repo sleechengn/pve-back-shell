@@ -302,6 +302,7 @@ if id -u root > /dev/null 2>&1; then
 			else
 				echo "root 10 undo $RT_HOME/.profile"
 			fi
+
 		else
 			echo "BACKUP root home not zero"
 		fi
