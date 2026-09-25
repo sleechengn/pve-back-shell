@@ -314,143 +314,153 @@ else
 fi
 
 # sa ------------------------------------------------------------------
+if ! id -u sa > /dev/null 2>&1; then useradd -m --uid 100000 sa; fi
 
-if [ -e "$(dirname $0)/home/sa" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
-	fi
-fi
+if id -u sa > /dev/null 2>&1; then
+	if [ -e "$(dirname $0)/etc/passwd" ]; then
+		SA_HOME=$(cat $(dirname $0)/etc/passwd|grep "^sa:"|cut -d: -f6)
+		if [ "$SA_HOME" ]; then
+			SAT_HOME=$(getent passwd sa | cut -d: -f6)
 
-if [ -e "$(dirname $0)/home/sa/桌面" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
-	fi
-	echo "sa 1 restore /home/sa/桌面"
-	rm -rf /home/sa/桌面
-	cp -ra $(dirname $0)/home/sa/桌面 /home/sa
-	chown -R sa:users /home/sa/桌面
-fi
+			if [ -e "$(dirname $0)$SA_HOME/桌面" ]; then
+				if [ ! -e "$SAT_HOME" ]; then
+					useradd -m --uid 100000 sa
+				fi
+				echo "sa 1 restore $SAT_HOME/桌面"
+				rm -rf $SAT_HOME/桌面
+				cp -ra $(dirname $0)$SA_HOME/桌面 $SAT_HOME
+				chown -R sa:100000 $SAT_HOME/桌面
+			fi
 
-if [ -e "$(dirname $0)/home/sa/Desktop" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
-	fi
-	echo "sa 2 restore /home/sa/Desktop"
-	rm -rf /home/sa/Desktop
-	cp -ra $(dirname $0)/home/sa/Desktop /home/sa
-	chown -R sa:users /home/sa/Desktop
-fi
+			if [ -e "$(dirname $0)$SA_HOME/Desktop" ]; then
+				if [ ! -e "$SAT_HOME" ]; then
+					useradd -m --uid 100000 sa
+				fi
+				echo "sa 2 restore $SAT_HOME/Desktop"
+				rm -rf $SAT_HOME/Desktop
+				cp -ra $(dirname $0)$SA_HOME/Desktop $SAT_HOME
+				chown -R sa:100000 $SAT_HOME/Desktop
+			fi
 
-if [ -e "$(dirname $0)/home/sa/appImages" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
-	fi
-	echo "sa 3 restore /home/sa/appImages"
-	rm -rf /home/sa/appImages
-	cp -ra $(dirname $0)/home/sa/appImages /home/sa
-	chown -R sa:users /home/sa/appImages
-fi
+			if [ -e "$(dirname $0)$SA_HOME/appImages" ]; then
+				if [ ! -e "$SAT_HOME" ]; then
+					useradd -m --uid 100000 sa
+				fi
+				echo "sa 3 restore $SAT_HOME/appImages"
+				rm -rf $SAT_HOME/appImages
+				cp -ra $(dirname $0)$SA_HOME/appImages $SAT_HOME
+				chown -R sa:100000 $SAT_HOME/appImages
+			fi
 
-if [ -e "$(dirname $0)/home/sa/appShell" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
-	fi
-    echo "sa 4 restore /home/sa/appShell"
-	rm -rf /home/sa/appShell
-    cp -ra $(dirname $0)/home/sa/appShell /home/sa
-    chown -R sa:users /home/sa/appShell
-fi
+			if [ -e "$(dirname $0)$SA_HOME/appShell" ]; then
+				if [ ! -e "$SAT_HOME" ]; then
+					useradd -m --uid 100000 sa
+				fi
+				echo "sa 4 restore $SAT_HOME/appShell"
+				rm -rf $SAT_HOME/appShell
+				cp -ra $(dirname $0)$SA_HOME/appShell $SAT_HOME
+				chown -R sa:100000 $SAT_HOME/appShell
+			fi
 
-if [ -e "$(dirname $0)/home/sa/.tmux.conf" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
-	fi
-	echo "sa 5 restore /home/sa/.tmux.conf"
-	cp -ra $(dirname $0)/home/sa/.tmux.conf /home/sa
-	chown -R sa:users /home/sa/.tmux*
-fi
+			if [ -e "$(dirname $0)$SA_HOME/.tmux.conf" ]; then
+				if [ ! -e "$SAT_HOME" ]; then
+					useradd -m --uid 100000 sa
+				fi
+				echo "sa 5 restore $SAT_HOME/.tmux.conf"
+				cp -ra $(dirname $0)$SA_HOME/.tmux.conf $SAT_HOME
+				chown -R sa:100000 $SAT_HOME/.tmux*
+			fi
 
-if [ -e "$(dirname $0)/home/sa/.config/fish/config.fish" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
-	fi
-	mkdir -p /home/sa/.config/fish
-	chown -R sa /home/sa/.config
-	cp -ra $(dirname $0)/home/sa/.config/fish/config.fish /home/sa/.config/fish
-	echo sa 6 restore $(dirname $0)/home/sa/.config/fish/config.fish
-	chown -R sa /home/sa/.config
-fi
+			if [ -e "$(dirname $0)$SA_HOME/.config/fish/config.fish" ]; then
+				if [ ! -e "$SAT_HOME" ]; then
+					useradd -m --uid 100000 sa
+				fi
+				mkdir -p $SAT_HOME/.config/fish
+				chown -R sa $SAT_HOME/.config
+				cp -ra $(dirname $0)$SA_HOME/.config/fish/config.fish $SAT_HOME/.config/fish
+				echo sa 6 restore $(dirname $0)$SA_HOME/.config/fish/config.fish
+				chown -R sa $SAT_HOME/.config
+			fi
 
-if [ -e "$(dirname $0)/home/sa/.bashrc" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
+			if [ -e "$(dirname $0)$SA_HOME/.bashrc" ]; then
+				if [ ! -e "$SAT_HOME" ]; then
+					useradd -m --uid 100000 sa
+				fi
+				mkdir -p $SAT_HOME
+				cp -ra $(dirname $0)$SA_HOME/.bashrc $SAT_HOME
+				echo sa 7 restore sa ba
+			else
+				echo sa 7 undo .bashrc
+			fi
+
+			if [ -e "$(dirname $0)$SA_HOME/.config/niri/config.kdl" ]; then
+				if [ ! -e "$SAT_HOME" ]; then
+					useradd -m --uid 100000 sa
+				fi
+				mkdir -p $SAT_HOME/.config/niri
+				chown -R sa $SAT_HOME/.config
+				cp -ra $(dirname $0)$SA_HOME/.config/niri/config.kdl $SAT_HOME/.config/niri
+				echo sa 8 restore $SAT_HOME/.config/niri/config.kdl
+			else
+				echo "sa 8 undo config.kdl"
+			fi
+
+			if [ -e "$(dirname $0)$SA_HOME/.profile" ]; then
+				if [ ! -e "$SAT_HOME" ]; then
+					useradd -m --uid 100000 sa
+				fi
+				mkdir -p $SAT_HOME
+				cp -ra $(dirname $0)$SA_HOME/.profile $SAT_HOME
+				chown -R sa $SAT_HOME/.profile
+				echo sa 9 restore $SAT_HOME/.profile
+			else
+				echo "sa 9 undo $SAT_HOME/.profile"
+			fi
+
+			if [ -e "$(dirname $0)$SA_HOME/.switch-bg.sh" ]; then
+				if [ ! -e "$SAT_HOME" ]; then
+					useradd -m --uid 100000 sa
+				fi
+				mkdir -p $SAT_HOME
+				cp -ra $(dirname $0)$SA_HOME/.switch-bg.sh $SAT_HOME
+				chown -R sa $SAT_HOME/.switch-bg.sh
+				echo sa 10 restore $SAT_HOME/.switch-bg.sh
+			else
+				echo "sa 10 undo $SAT_HOME/.switch-bg.sh"
+			fi
+
+			if [ -e "$(dirname $0)$SA_HOME/Pictures" ] && [ "$(ls -A $(dirname $0)$SA_HOME/Pictures/)" ]; then
+				if [ ! -e "$SAT_HOME" ]; then
+					useradd -m --uid 100000 sa
+				fi
+				mkdir -p $SAT_HOME/Pictures
+				cp -ra $(dirname $0)$SA_HOME/Pictures/* $SAT_HOME/Pictures
+				chown -R sa $SAT_HOME/Pictures
+				echo sa 11 restore $(dirname $0)$SA_HOME/Pictures
+			else
+				echo "sa 11 undo Pictures"
+			fi
+
+			if [ -e "$(dirname $0)$SA_HOME/.config/wifi" ] && [ "$(ls -A $(dirname $0)$SA_HOME/.config/wifi)" ]; then
+				if ! id -u sa > /dev/null 2>&1; then
+					useradd -m --uid 100000 sa
+				fi
+				mkdir -p $SAT_HOME/.config/wifi
+				cp -ra $(dirname $0)$SA_HOME/.config/wifi/* $SAT_HOME/.config/wifi
+				chown -R sa $SAT_HOME/.config
+				echo sa 12 restore $(dirname $0)$SA_HOME/.config/wifi
+			else
+				echo "sa 12 undo wifi"
+			fi
+
+		else
+			echo "BACKUP sa home not zero"
+		fi
+	else
+		echo "$(dirname $0)/etc/passwd not exist"
 	fi
-	mkdir -p /home/sa
-	cp -ra $(dirname $0)/home/sa/.bashrc /home/sa
-	echo sa 7 restore sa ba
 else
-	echo sa 7 undo .bashrc
-fi
-
-if [ -e "$(dirname $0)/home/sa/.config/niri/config.kdl" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
-	fi
-	mkdir -p /home/sa/.config/niri
-	chown -R sa /home/sa/.config
-	cp -ra $(dirname $0)/home/sa/.config/niri/config.kdl /home/sa/.config/niri
-	echo sa 8 restore /home/sa/.config/niri/config.kdl
-else
-	echo "sa 8 undo config.kdl"
-fi
-
-if [ -e "$(dirname $0)/home/sa/.profile" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
-	fi
-	mkdir -p /home/sa
-	cp -ra $(dirname $0)/home/sa/.profile /home/sa
-	chown -R sa /home/sa/.profile
-	echo sa 9 restore /home/sa/.profile
-else
-	echo "sa 9 undo /home/sa/.profile"
-fi
-
-if [ -e "$(dirname $0)/home/sa/.switch-bg.sh" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
-	fi
-	mkdir -p /home/sa
-	cp -ra $(dirname $0)/home/sa/.switch-bg.sh /home/sa
-	chown -R sa /home/sa/.switch-bg.sh
-	echo sa 10 restore /home/sa/.switch-bg.sh
-else
-	echo "sa 10 undo /home/sa/.switch-bg.sh"
-fi
-
-if [ -e "$(dirname $0)/home/sa/Pictures" ] && [ "$(ls -A $(dirname $0)/home/sa/Pictures/)" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
-	fi
-	mkdir -p /home/sa/Pictures
-	cp -ra $(dirname $0)/home/sa/Pictures/* /home/sa/Pictures
-	chown -R sa /home/sa/Pictures
-	echo sa 11 restore $(dirname $0)/home/sa/Pictures
-else
-	echo "sa 11 undo Pictures"
-fi
-
-if [ -e "$(dirname $0)/home/sa/.config/wifi" ] && [ "$(ls -A $(dirname $0)/home/sa/.config/wifi)" ]; then
-	if ! id -u sa > /dev/null 2>&1; then
-		useradd -m --uid 100000 sa
-	fi
-	USER_HOME=$(getent passwd sa | cut -d: -f6)
-	mkdir -p $USER_HOME/.config/wifi
-	cp -ra $(dirname $0)/home/sa/.config/wifi/* $USER_HOME/.config/wifi
-	chown -R sa $USER_HOME/.config
-	echo sa 12 restore $(dirname $0)/home/sa/.config/wifi
-else
-	echo "sa 12 undo wifi"
+	echo "sa zero"
 fi
 
 $(dirname $0)/nodes.sh
