@@ -105,371 +105,375 @@ else
 	echo "11 undo /etc/pve/lxc/*"
 fi
 
-if [ -e "/home/sa/appShell" ]; then
-	if [ "$(ls -A /home/sa/appShell)" ]; then
-		echo "12 backup /home/sa/appShell/*"
-		mkdir -p $(dirname $0)/home/sa/appShell
-		cp -ra /home/sa/appShell/* $(dirname $0)/home/sa/appShell
-	else
-		echo "12 undo /home/sa/appShell/*"
-	fi
-else
-	echo "12 undo /home/sa/appShell/*"
-fi
-
-if [ -e "/home/sa/appImages" ]; then
-	if [ "$(ls -A /home/sa/appImages)" ]; then
-		echo "13 backup /home/sa/appImages/*"
-		mkdir -p $(dirname $0)/home/sa/appImages
-		cp -ra /home/sa/appImages/* $(dirname $0)/home/sa/appImages
-	else
-		echo "13 undo /home/sa/appImages/*"
-	fi
-else
-	echo "13 undo /home/sa/appImages/*"
-fi
 
 if [ -e "/etc/pve/mapping" ]; then
 	if [ "$(ls -A /etc/pve/mapping)" ]; then
-		echo "14 backup /etc/pve/mapping/*"
+		echo "12 backup /etc/pve/mapping/*"
 		mkdir -p $(dirname $0)/etc/pve/mapping
 		cp -ra /etc/pve/mapping/* $(dirname $0)/etc/pve/mapping
 	else
-		echo "14 undo /etc/pve/mapping/*"
+		echo "12 undo /etc/pve/mapping/*"
 	fi
 else
-	echo "14 undo /etc/pve/mapping/*"
+	echo "12 undo /etc/pve/mapping/*"
 fi
 
 if [ -e "/etc/pve/storage.cfg" ]; then
-	echo "15 backup /etc/pve/storage.cfg"
+	echo "13 backup /etc/pve/storage.cfg"
 	mkdir -p $(dirname $0)/etc/pve
 	cp -ra /etc/pve/storage.cfg $(dirname $0)/etc/pve
 else
-	echo "15 undo /etc/pve/storage.cfg"
-fi
-
-if [ -e "/home/sa/Desktop" ]; then
-	if [ "$(ls -A /home/sa/Desktop)" ]; then
-		echo "16 backup /home/sa/Desktop/*"
-		mkdir -p $(dirname $0)/home/sa/Desktop
-		cp -ra /home/sa/Desktop/* $(dirname $0)/home/sa/Desktop
-	else
-		echo "16 undo /home/sa/Desktop/*"
-	fi
-else
-	echo "16 undo /home/sa/Desktop/*"
-fi
-
-if [ -e "/home/sa/.tmux.conf" ]; then
-	mkdir -p $(dirname $0)/home/sa
-	cp -a /home/sa/.tmux.conf $(dirname $0)/home/sa
-	echo "16.1 backup /home/sa/.tmux.conf"
-else
-	echo "16.1 undo /home/sa/.tmux.conf"
-fi
-
-if [ -e "/root/.bashrc" ]; then
-	mkdir -p $(dirname $0)/root
-	cp /root/.bashrc $(dirname $0)/root
-	echo 16.2 backup root bashrc
-else
-	echo 16.2 undo root s bashrc
-fi
-
-if [ -e "/home/sa/.bashrc" ]; then
-	mkdir -p $(dirname $0)/home/sa
-	cp -ra /home/sa/.bashrc $(dirname $0)/home/sa
-	echo 16.3 back sa bash co
-else
-	echo "16.3 undo sa bashrc"
-fi
-
-if [ -e "/root/.tmux.conf" ]; then
-	mkdir -p $(dirname $0)/root
-	cp -a /root/.tmux.conf $(dirname $0)/root
-	echo "16.3.1 backup root tmux"
-else
-	echo "16 .4 unbackup root .tmux.conf"
-fi
-
-if [ -e "/home/sa/桌面" ]; then
-	if [ "$(ls -A /home/sa/桌面)" ]; then
-		echo "17 backup /home/sa/桌面/*"
-		mkdir -p $(dirname $0)/home/sa/桌面
-		cp -ra /home/sa/桌面/*	$(dirname $0)/home/sa/桌面
-	else
-		echo "17 undo /home/sa/桌面/*"
-	fi
-else
-	echo "17 undo /home/sa/桌面/*"
+	echo "13 undo /etc/pve/storage.cfg"
 fi
 
 if [ -e "/var/lib/vz/snippets" ]; then
 	if [ "$(ls -A /var/lib/vz/snippets)" ]; then
-		echo "18 backup /var/lib/vz/snippets/*"
+		echo "14 backup /var/lib/vz/snippets/*"
 		mkdir -p $(dirname $0)/var/lib/vz/snippets
 		cp -ra /var/lib/vz/snippets/* $(dirname $0)/var/lib/vz/snippets
 	else
-		echo "18 undo /var/lib/vz/snippets/*"
+		echo "14 undo /var/lib/vz/snippets/*"
 	fi
 else
-	echo "18 undo /var/lib/vz/snippets/*"
+	echo "14 undo /var/lib/vz/snippets/*"
 fi
 
 if [ -e "/etc/systemd/system/ttyd.service" ]; then
-	echo "19 backup /etc/systemd/system/ttyd.service"
+	echo "15 backup /etc/systemd/system/ttyd.service"
 	mkdir -p $(dirname $0)/etc/systemd/system
 	cp /etc/systemd/system/ttyd.service $(dirname $0)/etc/systemd/system
 else
-	echo "19 undo /etc/systemd/system/ttyd.service"
+	echo "15 undo /etc/systemd/system/ttyd.service"
 fi
 
 if [ -e "/etc/systemd/system/comfyui-models.service" ]; then
-	echo "20 backup /etc/systemd/system/comfyui-models.service"
+	echo "16 backup /etc/systemd/system/comfyui-models.service"
 	mkdir -p $(dirname $0)/etc/systemd/system
 	cp /etc/systemd/system/comfyui-models.service $(dirname $0)/etc/systemd/system
 else
-	echo "20 undo /etc/systemd/system/comfyui-models.service"
+	echo "16 undo /etc/systemd/system/comfyui-models.service"
 fi
 
 if [ -e "/usr/bin/ttyd.x86_64" ]; then
-	echo "21 backup /usr/bin/ttyd.x86_64"
+	echo "17 backup /usr/bin/ttyd.x86_64"
 	mkdir -p $(dirname $0)/usr/bin
 	cp /usr/bin/ttyd.x86_64 $(dirname $0)/usr/bin
 else
-	echo "21 undo /usr/bin/ttyd.x86_64"
+	echo "17 undo /usr/bin/ttyd.x86_64"
 fi
 
 if [ -e "/etc/nginx" ] && [ "$(ls -A /etc/nginx)" ]; then
-	echo "21.1 backup /etc/nginx"
+	echo "18 backup /etc/nginx"
 	mkdir -p $(dirname $0)/etc/nginx
 	cp -ra /etc/nginx/* $(dirname $0)/etc/nginx
 else
-	echo "21.1 undo /etc/nginx"
+	echo "18 undo /etc/nginx"
 fi
 
 if [ -e "/etc/hostname" ]; then
-	echo "22 backup /etc/hostname"
+	echo "19 backup /etc/hostname"
 	mkdir -p $(dirname $0)/etc
 	cp -ra /etc/hostname $(dirname $0)/etc
 else
-	echo "22 undo /etc/hostname"
+	echo "19 undo /etc/hostname"
 fi
 
 if [ -e "/etc/hosts" ]; then
-	echo "23 backup /etc/hosts"
+	echo "20 backup /etc/hosts"
 	mkdir -p $(dirname $0)/etc
 	cp -ra /etc/hosts $(dirname $0)/etc
 else
-	echo "23 undo /etc/hosts"
+	echo "20 undo /etc/hosts"
 fi
 
 if [ -e "/etc/pve/nodes" ]; then
-	echo "24 backup /etc/pve/nodes"
+	echo "21 backup /etc/pve/nodes"
 	mkdir -p $(dirname $0)/etc/pve
 	cp -ra /etc/pve/nodes $(dirname $0)/etc/pve
 else
-	echo "24 undo /etc/pve/nodes"
+	echo "21 undo /etc/pve/nodes"
 fi
 
 if [ -e "/etc/systemd/system/autostart.service" ]; then
-        echo "25 backup /etc/systemd/system/autostart.service"
+        echo "22 backup /etc/systemd/system/autostart.service"
         mkdir -p $(dirname $0)/etc/systemd/system
         cp -ra /etc/systemd/system/autostart.service $(dirname $0)/etc/systemd/system
 else
-        echo "25 undo /etc/systemd/system/autostart.service"
+        echo "22 undo /etc/systemd/system/autostart.service"
 fi
 
 if [ -e "/etc/pve/datacenter.cfg" ]; then
 	mkdir -p $(dirname $0)/etc/pve
 	cp -ra /etc/pve/datacenter.cfg $(dirname $0)/etc/pve
-	echo "26 backup /etc/pve/datacenter.cfg"
+	echo "23 backup /etc/pve/datacenter.cfg"
 else
-	echo "26 undo /etc/pve/datacenter.cfg"
+	echo "23 undo /etc/pve/datacenter.cfg"
 fi
 
 if [ -e "/etc/systemd/system/fifo.service" ]; then
 	mkdir -p $(dirname $0)/etc/systemd/system
 	cp -ra /etc/systemd/system/fifo.service $(dirname $0)/etc/systemd/system
-	echo "27 backup /etc/systemd/system/fifo.service"
+	echo "24 backup /etc/systemd/system/fifo.service"
 else
-	echo "27 undo /etc/systemd/system/fifo.service"
+	echo "24 undo /etc/systemd/system/fifo.service"
 fi
 
 if [ -e "/etc/systemd/system/fbs.service" ]; then
 	mkdir -p $(dirname $0)/etc/systemd/system
 	cp -ra /etc/systemd/system/fbs.service $(dirname $0)/etc/systemd/system
-	echo "27.01 backup /etc/systemd/system/fbs.service"
+	echo "25 backup /etc/systemd/system/fbs.service"
 else
-	echo "27.01 undo /etc/systemd/system/fbs.service"
+	echo "25 undo /etc/systemd/system/fbs.service"
 fi
 
 if [ -e "/etc/samba" ] && [ "$(ls -A /etc/samba/*)" ]; then
 	mkdir -p $(dirname $0)/etc/samba
 	cp -ra /etc/samba/* $(dirname $0)/etc/samba
-	echo "28 backup /etc/samba"
+	echo "26 backup /etc/samba"
 else
-	echo "28 undo /etc/samba"
+	echo "26 undo /etc/samba"
 fi
 
 if [ -e "/etc/tgt" ] && [ "$(ls -A /etc/tgt/*)" ]; then
 	mkdir -p $(dirname $0)/etc/tgt
 	cp -ra /etc/tgt/* $(dirname $0)/etc/tgt
-	echo "29 backup /etc/tgt"
+	echo "27 backup /etc/tgt"
 else
-	echo "29 undo tgt"
+	echo "27 undo tgt"
 fi
 
 if [ -e "/usr/bin/t" ]; then
 	mkdir -p $(dirname $0)/usr/bin
 	cp -ra /usr/bin/t $(dirname $0)/usr/bin
-	echo 30 backup /usr/bin/t
+	echo 28 backup /usr/bin/t
 else
-	echo 30 undo /usr/bin/t
+	echo 28 undo /usr/bin/t
 fi
 
 if [ -e "/usr/bin/m" ]; then
 	mkdir -p $(dirname $0)/usr/bin
 	cp -ra /usr/bin/m $(dirname $0)/usr/bin
-	echo 31 backup /usr/bin/m
+	echo 29 backup /usr/bin/m
 else
-	echo 31 undo /usr/bin/m
+	echo 29 undo /usr/bin/m
 fi
 
 if [ -e "/etc/issue" ]; then
 	mkdir -p $(dirname $0)/etc
 	cp -ra /etc/issue $(dirname $0)/etc
-	echo "32 backup /etc/issue"
+	echo "30 backup /etc/issue"
 else
-	echo "32 undo issue"
+	echo "30 undo issue"
 fi
 
 if [ -e "/etc/containers" ]; then
 	mkdir -p $(dirname $0)/etc
 	cp -ra /etc/containers $(dirname $0)/etc
-	echo "33 backup /etc/containers"
+	echo "31 backup /etc/containers"
 else
-	echo "33 undo containers"
+	echo "31 undo containers"
 fi
 
 if [ -e "/etc/kernel/cmdline" ]; then
 	mkdir -p $(dirname $0)/etc/kernel
 	cp -ra /etc/kernel/cmdline $(dirname $0)/etc/kernel
-	echo 34 /etc/kernel/cmdline
-fi
-
-if [ -e "/root/.bg.jpg" ]; then
-	mkdir -p $(dirname $0)/root
-	cp -ra /root/.bg.jpg $(dirname $0)/root
-	echo 35 /root/.bg.jpg
-fi
-
-if [ -e "/root/.config/fish/config.fish" ]; then
-	mkdir -p $(dirname $0)/root/.config/fish
-	cp /root/.config/fish/config.fish $(dirname $0)/root/.config/fish
-	echo 36 config.fish
+	echo 32 /etc/kernel/cmdline
 fi
 
 if [ -e "/usr/bin/e" ]; then
 	mkdir -p $(dirname $0)/usr/bin
 	cp /usr/bin/e $(dirname $0)/usr/bin
-	echo 37 e
+	echo 33 e
 fi
 
 if [ -e "/etc/systemd/system/udr.service" ]; then
 	mkdir -p $(dirname $0)/etc/systemd/system
 	cp -ra /etc/systemd/system/udr.service $(dirname $0)/etc/systemd/system
-	echo "38 backup /etc/systemd/system/udr.service"
+	echo "34 backup /etc/systemd/system/udr.service"
 else
-	echo "38 undo /etc/systemd/system/udr.service"
+	echo "34 undo /etc/systemd/system/udr.service"
 fi
 
 if [ -e "/etc/systemd/system/fbi.service" ]; then
 	mkdir -p $(dirname $0)/etc/systemd/system
 	cp -ra /etc/systemd/system/fbi.service $(dirname $0)/etc/systemd/system
-	echo "39 backup /etc/systemd/system/fbi.service"
+	echo "35 backup /etc/systemd/system/fbi.service"
 else
-	echo "39 undo /etc/systemd/system/fbi.service"
+	echo "35 undo /etc/systemd/system/fbi.service"
 fi
 
 if [ -e "/usr/bin/mm" ]; then
 	mkdir -p $(dirname $0)/usr/bin
 	cp /usr/bin/mm $(dirname $0)/usr/bin
-	echo 40 mm
+	echo 36 mm
 fi
 
 if [ -e "/usr/bin/p" ]; then
 	mkdir -p $(dirname $0)/usr/bin
 	cp /usr/bin/p $(dirname $0)/usr/bin
-	echo 41 p
+	echo 37 p
+fi
+
+# r ----------------------------------------------------
+
+if [ -e "/root/.bashrc" ]; then
+	mkdir -p $(dirname $0)/root
+	cp /root/.bashrc $(dirname $0)/root
+	echo root 1 backup root bashrc
+else
+	echo root 1 undo root s bashrc
+fi
+
+if [ -e "/root/.tmux.conf" ]; then
+	mkdir -p $(dirname $0)/root
+	cp -a /root/.tmux.conf $(dirname $0)/root
+	echo "root 2 backup root tmux"
+else
+	echo "root 2 unbackup root .tmux.conf"
+fi
+
+if [ -e "/root/.bg.jpg" ]; then
+	mkdir -p $(dirname $0)/root
+	cp -ra /root/.bg.jpg $(dirname $0)/root
+	echo root 3 /root/.bg.jpg
+fi
+
+if [ -e "/root/.config/fish/config.fish" ]; then
+	mkdir -p $(dirname $0)/root/.config/fish
+	cp /root/.config/fish/config.fish $(dirname $0)/root/.config/fish
+	echo root 4 config.fish
 fi
 
 if [ -e "/root/.bg.mp4" ]; then
 	mkdir -p $(dirname $0)/root
 	cp -ra /root/.bg.mp4 $(dirname $0)/root
-	echo 42 /root/.bg.mp4
+	echo root 5 /root/.bg.mp4
 fi
-
 
 if [ -e "/root/.bg.mlterm.jpg" ]; then
 	mkdir -p $(dirname $0)/root
 	cp -ra /root/.bg.mlterm.jpg $(dirname $0)/root
-	echo 43 /root/.bg.mlterm.jpg
+	echo root 6 /root/.bg.mlterm.jpg
 fi
 
 if [ -e "/root/.mlterm" ]; then
 	mkdir -p $(dirname $0)/root
 	cp -ra /root/.mlterm $(dirname $0)/root
-	echo 44 /root/.mlterm
+	echo root 7 /root/.mlterm
 fi
 
 if [ -e "/root/Pictures" ] && [ "$(ls -A /root/Pictures/)" ]; then
 	mkdir -p $(dirname $0)/root/Pictures
 	cp -ra /root/Pictures/* $(dirname $0)/root/Pictures
-	echo 45 /root/Pictures
-fi
-
-if [ -e "/home/sa/.config/fish/config.fish" ]; then
-	mkdir -p $(dirname $0)/home/sa/.config/fish
-	cp -ra /home/sa/.config/fish/config.fish $(dirname $0)/home/sa/.config/fish
-	echo 46 config.fish
-fi
-
-if [ -e "/home/sa/.config/niri/config.kdl" ]; then
-	mkdir -p $(dirname $0)/home/sa/.config/niri
-	cp -ra /home/sa/.config/niri/config.kdl $(dirname $0)/home/sa/.config/niri
-	echo 47 user sa config.kdl
+	echo root 8 /root/Pictures
 fi
 
 if [ -e "/root/.profile" ]; then
 	mkdir -p $(dirname $0)/root
 	cp -ra /root/.profile $(dirname $0)/root
-	echo 48 /root/.profile
+	echo root 9 /root/.profile
+fi
+
+# sa ----------------------------------------------------------------------------
+
+if [ -e "/home/sa/Desktop" ]; then
+	if [ "$(ls -A /home/sa/Desktop)" ]; then
+		echo "sa 1 backup /home/sa/Desktop/*"
+		mkdir -p $(dirname $0)/home/sa/Desktop
+		cp -ra /home/sa/Desktop/* $(dirname $0)/home/sa/Desktop
+	else
+		echo "sa 1 undo /home/sa/Desktop/*"
+	fi
+else
+	echo "sa 1 undo /home/sa/Desktop/*"
+fi
+
+if [ -e "/home/sa/appShell" ]; then
+	if [ "$(ls -A /home/sa/appShell)" ]; then
+		echo "sa 2 backup /home/sa/appShell/*"
+		mkdir -p $(dirname $0)/home/sa/appShell
+		cp -ra /home/sa/appShell/* $(dirname $0)/home/sa/appShell
+	else
+		echo "sa 2 undo /home/sa/appShell/*"
+	fi
+else
+	echo "sa 2 undo /home/sa/appShell/*"
+fi
+
+if [ -e "/home/sa/appImages" ]; then
+	if [ "$(ls -A /home/sa/appImages)" ]; then
+		echo "sa 3 backup /home/sa/appImages/*"
+		mkdir -p $(dirname $0)/home/sa/appImages
+		cp -ra /home/sa/appImages/* $(dirname $0)/home/sa/appImages
+	else
+		echo "sa 3 undo /home/sa/appImages/*"
+	fi
+else
+	echo "sa 3 undo /home/sa/appImages/*"
+fi
+
+if [ -e "/home/sa/.tmux.conf" ]; then
+	mkdir -p $(dirname $0)/home/sa
+	cp -a /home/sa/.tmux.conf $(dirname $0)/home/sa
+	echo "sa 4 backup /home/sa/.tmux.conf"
+else
+	echo "sa 4 undo /home/sa/.tmux.conf"
+fi
+
+if [ -e "/home/sa/.bashrc" ]; then
+	mkdir -p $(dirname $0)/home/sa
+	cp -ra /home/sa/.bashrc $(dirname $0)/home/sa
+	echo sa 5 back sa bash co
+else
+	echo "sa 5 undo sa bashrc"
+fi
+
+if [ -e "/home/sa/桌面" ]; then
+	if [ "$(ls -A /home/sa/桌面)" ]; then
+		echo "sa 6 backup /home/sa/桌面/*"
+		mkdir -p $(dirname $0)/home/sa/桌面
+		cp -ra /home/sa/桌面/*	$(dirname $0)/home/sa/桌面
+	else
+		echo "sa 6 undo /home/sa/桌面/*"
+	fi
+else
+	echo "sa 6 undo /home/sa/桌面/*"
+fi
+
+if [ -e "/home/sa/.config/fish/config.fish" ]; then
+	mkdir -p $(dirname $0)/home/sa/.config/fish
+	cp -ra /home/sa/.config/fish/config.fish $(dirname $0)/home/sa/.config/fish
+	echo sa 7 config.fish
+fi
+
+if [ -e "/home/sa/.config/niri/config.kdl" ]; then
+	mkdir -p $(dirname $0)/home/sa/.config/niri
+	cp -ra /home/sa/.config/niri/config.kdl $(dirname $0)/home/sa/.config/niri
+	echo sa 8 user sa config.kdl
 fi
 
 if [ -e "/home/sa/.profile" ]; then
 	mkdir -p $(dirname $0)/home/sa
 	cp -ra /home/sa/.profile $(dirname $0)/home/sa
-	echo 49 user sa profile
+	echo sa 9 user sa profile
 fi
 
 if [ -e "/home/sa/.switch-bg.sh" ]; then
 	mkdir -p $(dirname $0)/home/sa
 	cp -ra /home/sa/.switch-bg.sh $(dirname $0)/home/sa
-	echo 50 user sa /home/sa/.switch-bg.sh
+	echo sa 10 user sa /home/sa/.switch-bg.sh
 fi
 
 if [ -e "/home/sa/Pictures" ] && [ "$(ls -A /home/sa/Pictures/)" ]; then
 	mkdir -p $(dirname $0)/home/sa/Pictures
 	cp -ra /home/sa/Pictures/* $(dirname $0)/home/sa/Pictures
-	echo 51 /home/sa/Pictures
+	echo sa 11 /home/sa/Pictures
 fi
 
 if [ -e "/home/sa/.config/wifi" ] && [ "$(ls -A /home/sa/.config/wifi)" ]; then
 	mkdir -p $(dirname $0)/home/sa/.config/wifi
 	cp -ra /home/sa/.config/wifi/* $(dirname $0)/home/sa/.config/wifi
-	echo 52 /home/sa/.config/wifi
+	echo sa 12 /home/sa/.config/wifi
 fi
 
 echo "please make fstab done"
