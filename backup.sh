@@ -105,7 +105,6 @@ else
 	echo "11 undo /etc/pve/lxc/*"
 fi
 
-
 if [ -e "/etc/pve/mapping" ]; then
 	if [ "$(ls -A /etc/pve/mapping)" ]; then
 		echo "12 backup /etc/pve/mapping/*"
@@ -314,72 +313,91 @@ if [ -e "/usr/bin/p" ]; then
 	echo 37 p
 fi
 
+if [ -e "/etc/passwd" ]; then
+	mkdir -p $(dirname $0)/etc
+	cp /etc/passwd $(dirname $0)/etc
+	echo 38 passwd
+fi
+
+if [ -e "/etc/shadow" ]; then
+	mkdir -p $(dirname $0)/etc
+	cp /etc/shadow $(dirname $0)/etc
+	echo 39 shadow
+fi
+
+if [ -e "/etc/group" ]; then
+	mkdir -p $(dirname $0)/etc
+	cp /etc/group $(dirname $0)/etc
+	echo 40 group
+fi
+
 # r ----------------------------------------------------
+if id -u root > /dev/null 2>&1; then
+	R_HOME=$(getent passwd root | cut -d: -f6)
+	if [ -e "$R_HOME/.bashrc" ]; then
+		mkdir -p $(dirname $0)$R_HOME
+		cp $R_HOME/.bashrc $(dirname $0)$R_HOME
+		echo root 1 backup root bashrc
+	else
+		echo root 1 undo root s bashrc
+	fi
 
-if [ -e "/root/.bashrc" ]; then
-	mkdir -p $(dirname $0)/root
-	cp /root/.bashrc $(dirname $0)/root
-	echo root 1 backup root bashrc
-else
-	echo root 1 undo root s bashrc
+	if [ -e "$R_HOME/.tmux.conf" ]; then
+		mkdir -p $(dirname $0)$R_HOME
+		cp -a $R_HOME/.tmux.conf $(dirname $0)$R_HOME
+		echo "root 2 backup root tmux"
+	else
+		echo "root 2 unbackup root .tmux.conf"
+	fi
+
+	if [ -e "$R_HOME/.bg.jpg" ]; then
+		mkdir -p $(dirname $0)$R_HOME
+		cp -ra $R_HOME/.bg.jpg $(dirname $0)$R_HOME
+		echo root 3 $R_HOME/.bg.jpg
+	fi
+
+	if [ -e "$R_HOME/.config/fish/config.fish" ]; then
+		mkdir -p $(dirname $0)$R_HOME/.config/fish
+		cp $R_HOME/.config/fish/config.fish $(dirname $0)$R_HOME/.config/fish
+		echo root 4 config.fish
+	fi
+
+	if [ -e "$R_HOME/.bg.mp4" ]; then
+		mkdir -p $(dirname $0)$R_HOME
+		cp -ra $R_HOME/.bg.mp4 $(dirname $0)$R_HOME
+		echo root 5 $R_HOME/.bg.mp4
+	fi
+
+	if [ -e "$R_HOME/.bg.mlterm.jpg" ]; then
+		mkdir -p $(dirname $0)$R_HOME
+		cp -ra $R_HOME/.bg.mlterm.jpg $(dirname $0)$R_HOME
+		echo root 6 $R_HOME/.bg.mlterm.jpg
+	fi
+
+	if [ -e "$R_HOME/.mlterm" ]; then
+		mkdir -p $(dirname $0)$R_HOME
+		cp -ra $R_HOME/.mlterm $(dirname $0)$R_HOME
+		echo root 7 $R_HOME/.mlterm
+	fi
+
+	if [ -e "$R_HOME/Pictures" ] && [ "$(ls -A $R_HOME/Pictures/)" ]; then
+		mkdir -p $(dirname $0)$R_HOME/Pictures
+		cp -ra $R_HOME/Pictures/* $(dirname $0)$R_HOME/Pictures
+		echo root 8 $R_HOME/Pictures
+	fi
+
+	if [ -e "$R_HOME/.profile" ]; then
+		mkdir -p $(dirname $0)$R_HOME
+		cp -ra $R_HOME/.profile $(dirname $0)$R_HOME
+		echo root 9 $R_HOME/.profile
+	fi
+
+	if [ -e "$R_HOME/.config/wifi" ] && [ "$(ls -A $R_HOME/.config/wifi)" ]; then
+		mkdir -p $(dirname $0)$R_HOME/.config/wifi
+		cp -ra $R_HOME/.config/wifi/* $(dirname $0)$R_HOME/.config/wifi
+		echo root 10 $R_HOME/.config/wifi
+	fi
 fi
-
-if [ -e "/root/.tmux.conf" ]; then
-	mkdir -p $(dirname $0)/root
-	cp -a /root/.tmux.conf $(dirname $0)/root
-	echo "root 2 backup root tmux"
-else
-	echo "root 2 unbackup root .tmux.conf"
-fi
-
-if [ -e "/root/.bg.jpg" ]; then
-	mkdir -p $(dirname $0)/root
-	cp -ra /root/.bg.jpg $(dirname $0)/root
-	echo root 3 /root/.bg.jpg
-fi
-
-if [ -e "/root/.config/fish/config.fish" ]; then
-	mkdir -p $(dirname $0)/root/.config/fish
-	cp /root/.config/fish/config.fish $(dirname $0)/root/.config/fish
-	echo root 4 config.fish
-fi
-
-if [ -e "/root/.bg.mp4" ]; then
-	mkdir -p $(dirname $0)/root
-	cp -ra /root/.bg.mp4 $(dirname $0)/root
-	echo root 5 /root/.bg.mp4
-fi
-
-if [ -e "/root/.bg.mlterm.jpg" ]; then
-	mkdir -p $(dirname $0)/root
-	cp -ra /root/.bg.mlterm.jpg $(dirname $0)/root
-	echo root 6 /root/.bg.mlterm.jpg
-fi
-
-if [ -e "/root/.mlterm" ]; then
-	mkdir -p $(dirname $0)/root
-	cp -ra /root/.mlterm $(dirname $0)/root
-	echo root 7 /root/.mlterm
-fi
-
-if [ -e "/root/Pictures" ] && [ "$(ls -A /root/Pictures/)" ]; then
-	mkdir -p $(dirname $0)/root/Pictures
-	cp -ra /root/Pictures/* $(dirname $0)/root/Pictures
-	echo root 8 /root/Pictures
-fi
-
-if [ -e "/root/.profile" ]; then
-	mkdir -p $(dirname $0)/root
-	cp -ra /root/.profile $(dirname $0)/root
-	echo root 9 /root/.profile
-fi
-
-if [ -e "/root/.config/wifi" ] && [ "$(ls -A /root/.config/wifi)" ]; then
-	mkdir -p $(dirname $0)/root/.config/wifi
-	cp -ra /root/.config/wifi/* $(dirname $0)/root/.config/wifi
-	echo root 10 /root/.config/wifi
-fi
-
 # sa ----------------------------------------------------------------------------
 
 if [ -e "/home/sa/Desktop" ]; then

@@ -225,17 +225,33 @@ fi
 
 # r ---------------------------------
 
-if [ -e "$(dirname $0)/root/.tmux.conf" ]; then
-	cp -a $(dirname $0)/root/.tmux.conf /root
-	echo "root 1 .tmux.conf"
-fi
+if id -u root > /dev/null 2>&1; then
+	if [ -e "$(dirname $0)/etc/passwd" ]; then
+		R_HOME=$(cat $(dirname $0)/etc/passwd|grep "^root:"|cut -d: -f6)
+		if [ "$R_HOME" ]; then
+			RT_HOME=$(getent passwd root | cut -d: -f6)
 
-if [ -e "$(dirname $0)/root/.bashrc" ]; then
-	echo "/root/.bashrc"
-	cp -ra $(dirname $0)/root/.bashrc /root
-	echo "root 2 .bashrc"
+			if [ -e "$(dirname $0)$R_HOME/.tmux.conf" ]; then
+				cp -a $(dirname $0)$R_HOME/.tmux.conf $RT_HOME
+				echo "root 1 .tmux.conf"
+			fi
+
+			if [ -e "$(dirname $0)$R_HOME/.bashrc" ]; then
+				echo "$RT_HOME/.bashrc"
+				cp -ra $(dirname $0)$R_HOME/.bashrc $RT_HOME
+				echo "root 2 .bashrc"
+			else
+				echo "root 2 .bashrc"
+			fi
+
+		else
+			echo "BACKUP root home not zero"
+		fi
+	else
+		echo "$(dirname $0)/etc/passwd not exist"
+	fi
 else
-	echo "root 2 .bashrc"
+	echo "root zero"
 fi
 
 if [ -e "$(dirname $0)/root/.bg.jpg" ]; then
