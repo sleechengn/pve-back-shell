@@ -404,6 +404,7 @@ if [ -e "$(dirname $0)/home/sa/.switch-bg.sh" ]; then
 else
 	echo "undo 42 /home/sa/.switch-bg.sh"
 fi
+
 if [ -e "$(dirname $0)/home/sa/Pictures" ] && [ "$(ls -A $(dirname $0)/home/sa/Pictures/)" ]; then
 	if [ ! -e "/home/sa" ]; then
 		useradd -m --uid 100000 sa
