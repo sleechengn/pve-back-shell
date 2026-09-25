@@ -322,7 +322,7 @@ else
 	fi
 fi
 
-if ! id -u sa > /dev/null 2>&1; then 
+if ! id -u sa > /dev/null 2>&1; then
 	useradd -m --uid 100000 -g sa sa
 else
 	if [ ! $(id -g sa) -eq 100000 ]; then
