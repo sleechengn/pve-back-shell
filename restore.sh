@@ -113,85 +113,6 @@ if [ -e "$(dirname $0)/etc/systemd/system/fbs.service" ]; then
     systemctl enable fbs
 fi
 
-if [ -e "$(dirname $0)/home/sa" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
-	fi
-fi
-
-if [ -e "$(dirname $0)/home/sa/桌面" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
-	fi
-	echo "18 restore /home/sa/桌面"
-	rm -rf /home/sa/桌面
-	cp -ra $(dirname $0)/home/sa/桌面 /home/sa
-	chown -R sa:users /home/sa/桌面
-fi
-
-if [ -e "$(dirname $0)/home/sa/Desktop" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
-	fi
-	echo "19 restore /home/sa/Desktop"
-	rm -rf /home/sa/Desktop
-	cp -ra $(dirname $0)/home/sa/Desktop /home/sa
-	chown -R sa:users /home/sa/Desktop
-fi
-
-if [ -e "$(dirname $0)/home/sa/appImages" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
-	fi
-	echo "19.1 restore /home/sa/appImages"
-	rm -rf /home/sa/appImages
-	cp -ra $(dirname $0)/home/sa/appImages /home/sa
-	chown -R sa:users /home/sa/appImages
-fi
-
-if [ -e "$(dirname $0)/home/sa/appShell" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
-	fi
-    echo "19.1 restore /home/sa/appShell"
-	rm -rf /home/sa/appShell
-    cp -ra $(dirname $0)/home/sa/appShell /home/sa
-    chown -R sa:users /home/sa/appShell
-fi
-
-if [ -e "$(dirname $0)/root/.tmux.conf" ]; then
-	cp -a $(dirname $0)/root/.tmux.conf /root
-	echo "restore root tmux"
-fi
-
-if [ -e "$(dirname $0)/home/sa/.tmux.conf" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
-	fi
-	echo "19.3 restore /home/sa/.tmux.conf"
-	cp -ra $(dirname $0)/home/sa/.tmux.conf /home/sa
-	chown -R sa:users /home/sa/.tmux*
-fi
-
-if [ -e "$(dirname $0)/root/.bashrc" ]; then
-	echo "/root/.bashrc"
-	cp -ra $(dirname $0)/root/.bashrc /root
-	echo "restore bash"
-else
-	echo undo
-fi
-
-if [ -e "$(dirname $0)/home/sa/.bashrc" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
-	fi
-	mkdir -p /home/sa
-	cp -ra $(dirname $0)/home/sa/.bashrc /home/sa
-	echo restore sa ba
-else
-	echo notfound
-fi
-
 if [ -e "$(dirname $0)/etc/systemd/system/autostart.service" ]; then
         echo "20 restore /etc/systemd/system/autostart.service"
         cp -ra $(dirname $0)/etc/systemd/system/autostart.service /etc/systemd/system
@@ -264,6 +185,59 @@ if [ -e "$(dirname $0)/etc/kernel/cmdline" ]; then
 	proxmox-boot-tool refresh
 fi
 
+if [ -e "$(dirname $0)/usr/bin/e" ]; then
+	mkdir -p /usr/bin
+	cp -ra $(dirname $0)/usr/bin/e /usr/bin
+	echo 31 restore $(dirname $0)/e
+fi
+
+if [ -e "$(dirname $0)/etc/systemd/system/udr.service" ]; then
+	mkdir -p /etc/systemd/system
+	cp -ra $(dirname $0)/etc/systemd/system/udr.service /etc/systemd/system
+	if [ -e "/opt/udr/udr.sh" ] || [ -e "$(dirname $0)/opt/udr/udr.sh" ]; then
+		systemctl enable --now udr
+	fi
+	echo "32 restore /etc/systemd/system/udr.service"
+fi
+
+if [ -e "$(dirname $0)/etc/systemd/system/fbi.service" ]; then
+	mkdir -p /etc/systemd/system
+	echo "33 restore /etc/systemd/system/fbi.service"
+	cp -ra $(dirname $0)/etc/systemd/system/fbi.service /etc/systemd/system
+	systemctl enable fbi
+fi
+
+if [ -e "$(dirname $0)/usr/bin/mm" ]; then
+	mkdir -p /usr/bin
+	cp -ra $(dirname $0)/usr/bin/mm /usr/bin
+	echo 33.01 restore /usr/bin/mm
+else
+	echo 33.01 undo /usr/bin/mm
+fi
+
+if [ -e "$(dirname $0)/usr/bin/p" ]; then
+	mkdir -p /usr/bin
+	cp -ra $(dirname $0)/usr/bin/p /usr/bin
+	echo 34 restore /usr/bin/p
+else
+	echo 34 undo /usr/bin/p
+fi
+
+# r ---------------------------------
+
+if [ -e "$(dirname $0)/root/.tmux.conf" ]; then
+	cp -a $(dirname $0)/root/.tmux.conf /root
+	echo "restore root tmux"
+fi
+
+if [ -e "$(dirname $0)/root/.bashrc" ]; then
+	echo "/root/.bashrc"
+	cp -ra $(dirname $0)/root/.bashrc /root
+	echo "restore bash"
+else
+	echo undo
+fi
+
 if [ -e "$(dirname $0)/root/.bg.jpg" ]; then
 	mkdir -p /root
 	cp -ra $(dirname $0)/root/.bg.jpg /root
@@ -274,40 +248,6 @@ if [ -e "$(dirname $0)/root/.config/fish/config.fish" ]; then
 	mkdir -p /root/.config/fish
 	cp -ra $(dirname $0)/root/.config/fish/config.fish /root/.config/fish
 	echo 30 restore $(dirname $0)/root/.config/fish/config.fish
-fi
-
-if [ -e "$(dirname $0)/usr/bin/e" ]; then
-	mkdir -p /usr/bin
-	cp -ra $(dirname $0)/usr/bin/e /usr/bin
-	echo 31 restore $(dirname $0)/e
-fi
-if [ -e "$(dirname $0)/etc/systemd/system/udr.service" ]; then
-	mkdir -p /etc/systemd/system
-	cp -ra $(dirname $0)/etc/systemd/system/udr.service /etc/systemd/system
-	if [ -e "/opt/udr/udr.sh" ] || [ -e "$(dirname $0)/opt/udr/udr.sh" ]; then
-		systemctl enable --now udr
-	fi
-	echo "32 restore /etc/systemd/system/udr.service"
-fi
-if [ -e "$(dirname $0)/etc/systemd/system/fbi.service" ]; then
-	mkdir -p /etc/systemd/system
-	echo "33 restore /etc/systemd/system/fbi.service"
-	cp -ra $(dirname $0)/etc/systemd/system/fbi.service /etc/systemd/system
-	systemctl enable fbi
-fi
-if [ -e "$(dirname $0)/usr/bin/mm" ]; then
-	mkdir -p /usr/bin
-	cp -ra $(dirname $0)/usr/bin/mm /usr/bin
-	echo 33.01 restore /usr/bin/mm
-else
-	echo 33.01 undo /usr/bin/mm
-fi
-if [ -e "$(dirname $0)/usr/bin/p" ]; then
-	mkdir -p /usr/bin
-	cp -ra $(dirname $0)/usr/bin/p /usr/bin
-	echo 34 restore /usr/bin/p
-else
-	echo 34 undo /usr/bin/p
 fi
 
 if [ -e "$(dirname $0)/root/.bg.mp4" ]; then
@@ -326,17 +266,6 @@ else
 	echo "undo 36 .mlterm"
 fi
 
-if [ -e "$(dirname $0)/home/sa/.config/fish/config.fish" ]; then
-	if [ ! -e "/home/sa" ]; then
-		useradd -m --uid 100000 sa
-	fi
-	mkdir -p /home/sa/.config/fish
-	chown -R sa /home/sa/.config
-	cp -ra $(dirname $0)/home/sa/.config/fish/config.fish /home/sa/.config/fish
-	echo 36.5 restore $(dirname $0)/home/sa/.config/fish/config.fish
-	chown -R sa /home/sa/.config
-fi
-
 if [ -e "$(dirname $0)/root/.bg.mlterm.jpg" ]; then
 	mkdir -p /root
 	cp -ra $(dirname $0)/root/.bg.mlterm.jpg /root
@@ -353,6 +282,93 @@ else
 	echo "undo 38 Pictures"
 fi
 
+if [ -e "$(dirname $0)/root/.profile" ]; then
+	mkdir -p /root
+	cp -ra $(dirname $0)/root/.profile /root
+	echo 40 restore $(dirname $0)/root/.profile
+else
+	echo "undo 40 /root/.profile"
+fi
+
+# sa ------------------------------------------------------------------
+
+if [ -e "$(dirname $0)/home/sa" ]; then
+	if [ ! -e "/home/sa" ]; then
+		useradd -m --uid 100000 sa
+	fi
+fi
+
+if [ -e "$(dirname $0)/home/sa/桌面" ]; then
+	if [ ! -e "/home/sa" ]; then
+		useradd -m --uid 100000 sa
+	fi
+	echo "18 restore /home/sa/桌面"
+	rm -rf /home/sa/桌面
+	cp -ra $(dirname $0)/home/sa/桌面 /home/sa
+	chown -R sa:users /home/sa/桌面
+fi
+
+if [ -e "$(dirname $0)/home/sa/Desktop" ]; then
+	if [ ! -e "/home/sa" ]; then
+		useradd -m --uid 100000 sa
+	fi
+	echo "19 restore /home/sa/Desktop"
+	rm -rf /home/sa/Desktop
+	cp -ra $(dirname $0)/home/sa/Desktop /home/sa
+	chown -R sa:users /home/sa/Desktop
+fi
+
+if [ -e "$(dirname $0)/home/sa/appImages" ]; then
+	if [ ! -e "/home/sa" ]; then
+		useradd -m --uid 100000 sa
+	fi
+	echo "19.1 restore /home/sa/appImages"
+	rm -rf /home/sa/appImages
+	cp -ra $(dirname $0)/home/sa/appImages /home/sa
+	chown -R sa:users /home/sa/appImages
+fi
+
+if [ -e "$(dirname $0)/home/sa/appShell" ]; then
+	if [ ! -e "/home/sa" ]; then
+		useradd -m --uid 100000 sa
+	fi
+    echo "19.1 restore /home/sa/appShell"
+	rm -rf /home/sa/appShell
+    cp -ra $(dirname $0)/home/sa/appShell /home/sa
+    chown -R sa:users /home/sa/appShell
+fi
+
+if [ -e "$(dirname $0)/home/sa/.tmux.conf" ]; then
+	if [ ! -e "/home/sa" ]; then
+		useradd -m --uid 100000 sa
+	fi
+	echo "19.3 restore /home/sa/.tmux.conf"
+	cp -ra $(dirname $0)/home/sa/.tmux.conf /home/sa
+	chown -R sa:users /home/sa/.tmux*
+fi
+
+if [ -e "$(dirname $0)/home/sa/.config/fish/config.fish" ]; then
+	if [ ! -e "/home/sa" ]; then
+		useradd -m --uid 100000 sa
+	fi
+	mkdir -p /home/sa/.config/fish
+	chown -R sa /home/sa/.config
+	cp -ra $(dirname $0)/home/sa/.config/fish/config.fish /home/sa/.config/fish
+	echo 36.5 restore $(dirname $0)/home/sa/.config/fish/config.fish
+	chown -R sa /home/sa/.config
+fi
+
+if [ -e "$(dirname $0)/home/sa/.bashrc" ]; then
+	if [ ! -e "/home/sa" ]; then
+		useradd -m --uid 100000 sa
+	fi
+	mkdir -p /home/sa
+	cp -ra $(dirname $0)/home/sa/.bashrc /home/sa
+	echo restore sa ba
+else
+	echo notfound
+fi
+
 if [ -e "$(dirname $0)/home/sa/.config/niri/config.kdl" ]; then
 	if [ ! -e "/home/sa" ]; then
 		useradd -m --uid 100000 sa
@@ -363,14 +379,6 @@ if [ -e "$(dirname $0)/home/sa/.config/niri/config.kdl" ]; then
 	echo 39 restore /home/sa/.config/niri/config.kdl
 else
 	echo "undo 39 sa niri config.kdl"
-fi
-
-if [ -e "$(dirname $0)/root/.profile" ]; then
-	mkdir -p /root
-	cp -ra $(dirname $0)/root/.profile /root
-	echo 40 restore $(dirname $0)/root/.profile
-else
-	echo "undo 40 /root/.profile"
 fi
 
 if [ -e "$(dirname $0)/home/sa/.profile" ]; then
