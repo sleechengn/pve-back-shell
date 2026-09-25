@@ -237,13 +237,71 @@ if id -u root > /dev/null 2>&1; then
 			fi
 
 			if [ -e "$(dirname $0)$R_HOME/.bashrc" ]; then
-				echo "$RT_HOME/.bashrc"
 				cp -ra $(dirname $0)$R_HOME/.bashrc $RT_HOME
 				echo "root 2 .bashrc"
 			else
 				echo "root 2 .bashrc"
 			fi
 
+			if [ -e "$(dirname $0)$R_HOME/.bg.jpg" ]; then
+				mkdir -p $RT_HOME
+				cp -ra $(dirname $0)$R_HOME/.bg.jpg $RT_HOME
+				echo "root 3 restore $(dirname $0)$R_HOME/.bg.jpg"
+			fi
+
+			if [ -e "$(dirname $0)$R_HOME/.config/fish/config.fish" ]; then
+				mkdir -p $RT_HOME/.config/fish
+				cp -ra $(dirname $0)$R_HOME/.config/fish/config.fish $RT_HOME/.config/fish
+				echo root 4 $(dirname $0)$R_HOME/.config/fish/config.fish
+			fi
+
+			if [ -e "$(dirname $0)$R_HOME/.bg.mp4" ]; then
+				mkdir -p $RT_HOME
+				cp -ra $(dirname $0)$R_HOME/.bg.mp4 $RT_HOME
+				echo root 5 $(dirname $0)$R_HOME/.bg.mp4
+			else
+				echo "root 5 undo $RT_HOME/.bg.mp4"
+			fi
+
+			if [ -e "$(dirname $0)$R_HOME/.mlterm" ]; then
+				mkdir -p $RT_HOME
+				cp -ra $(dirname $0)$R_HOME/.mlterm $RT_HOME
+				echo root 6 $(dirname $0)$R_HOME/.mlterm
+			else
+				echo "root 6 undo .mlterm"
+			fi
+
+			if [ -e "$(dirname $0)$R_HOME/.bg.mlterm.jpg" ]; then
+				mkdir -p $RT_HOME
+				cp -ra $(dirname $0)$R_HOME/.bg.mlterm.jpg $RT_HOME
+				echo root 7 restore $(dirname $0)$R_HOME/.bg.mlterm.jpg
+			else
+				echo "root 7 undo .bg.mlterm.jpg"
+			fi
+
+			if [ -e "$(dirname $0)$R_HOME/Pictures" ] && [ "$(ls -A $(dirname $0)$R_HOME/Pictures/)" ]; then
+				mkdir -p $RT_HOME/Pictures
+				cp -ra $(dirname $0)$R_HOME/Pictures/* $RT_HOME/Pictures
+				echo root 8 restore $(dirname $0)$R_HOME/Pictures
+			else
+				echo "root 8 undo Pictures"
+			fi
+
+			if [ -e "$(dirname $0)$R_HOME/.profile" ]; then
+				mkdir -p $RT_HOME
+				cp -ra $(dirname $0)$R_HOME/.profile $RT_HOME
+				echo root 9 restore $(dirname $0)$R_HOME/.profile
+			else
+				echo "root 9 undo $RT_HOME/.profile"
+			fi
+
+			if [ -e "$(dirname $0)$R_HOME/.profile" ]; then
+				mkdir -p $RT_HOME
+				cp -ra $(dirname $0)$R_HOME/.profile $RT_HOME
+				echo root 10 restore $(dirname $0)$R_HOME/.profile
+			else
+				echo "root 10 undo $RT_HOME/.profile"
+			fi
 		else
 			echo "BACKUP root home not zero"
 		fi
@@ -252,66 +310,6 @@ if id -u root > /dev/null 2>&1; then
 	fi
 else
 	echo "root zero"
-fi
-
-if [ -e "$(dirname $0)/root/.bg.jpg" ]; then
-	mkdir -p /root
-	cp -ra $(dirname $0)/root/.bg.jpg /root
-	echo "root 3 restore $(dirname $0)/root/.bg.jpg"
-fi
-
-if [ -e "$(dirname $0)/root/.config/fish/config.fish" ]; then
-	mkdir -p /root/.config/fish
-	cp -ra $(dirname $0)/root/.config/fish/config.fish /root/.config/fish
-	echo root 4 $(dirname $0)/root/.config/fish/config.fish
-fi
-
-if [ -e "$(dirname $0)/root/.bg.mp4" ]; then
-	mkdir -p /root
-	cp -ra $(dirname $0)/root/.bg.mp4 /root
-	echo root 5 $(dirname $0)/root/.bg.mp4
-else
-	echo "root 5 undo /root/.bg.mp4"
-fi
-
-if [ -e "$(dirname $0)/root/.mlterm" ]; then
-	mkdir -p /root
-	cp -ra $(dirname $0)/root/.mlterm /root
-	echo root 6 $(dirname $0)/root/.mlterm
-else
-	echo "root 6 undo .mlterm"
-fi
-
-if [ -e "$(dirname $0)/root/.bg.mlterm.jpg" ]; then
-	mkdir -p /root
-	cp -ra $(dirname $0)/root/.bg.mlterm.jpg /root
-	echo root 7 restore $(dirname $0)/root/.bg.mlterm.jpg
-else
-	echo "root 7 undo .bg.mlterm.jpg"
-fi
-
-if [ -e "$(dirname $0)/root/Pictures" ] && [ "$(ls -A $(dirname $0)/root/Pictures/)" ]; then
-	mkdir -p /root/Pictures
-	cp -ra $(dirname $0)/root/Pictures/* /root/Pictures
-	echo root 8 restore $(dirname $0)/root/Pictures
-else
-	echo "root 8 undo Pictures"
-fi
-
-if [ -e "$(dirname $0)/root/.profile" ]; then
-	mkdir -p /root
-	cp -ra $(dirname $0)/root/.profile /root
-	echo root 9 restore $(dirname $0)/root/.profile
-else
-	echo "root 9 undo /root/.profile"
-fi
-
-if [ -e "$(dirname $0)/root/.profile" ]; then
-	mkdir -p /root
-	cp -ra $(dirname $0)/root/.profile /root
-	echo root 10 restore $(dirname $0)/root/.profile
-else
-	echo "root 10 undo /root/.profile"
 fi
 
 # sa ------------------------------------------------------------------
