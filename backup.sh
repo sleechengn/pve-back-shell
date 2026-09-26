@@ -489,7 +489,7 @@ if id -u sa > /dev/null 2>&1; then
 		echo sa 10 user sa $S_HOME/.switch-bg.sh
 	fi
 
-	if [ -e "$S_HOME/Pictures" ] && [ "$(ls -A $S_HOME/Pictures/)" ]; then
+	if [ -e "$S_HOME/Pictures" ] && [ "$(ls -A $S_HOME/Pictures)" ]; then
 		mkdir -p $(dirname $0)$S_HOME/Pictures
 		cp -ra $S_HOME/Pictures/* $(dirname $0)$S_HOME/Pictures
 		echo sa 11 $S_HOME/Pictures
