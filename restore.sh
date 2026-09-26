@@ -311,6 +311,14 @@ if id -u root > /dev/null 2>&1; then
 				echo "root 11 undo $RT_HOME/.gitconfig"
 			fi
 
+			if [ -e "$(dirname $0)$R_HOME/.git-credentials" ]; then
+				mkdir -p $RT_HOME
+				cp -ra $(dirname $0)$R_HOME/.git-credentials  $RT_HOME
+				echo root 12 restore $(dirname $0)$R_HOME/.git-credentials
+			else
+				echo "root 12 undo .git-credentials"
+			fi
+
 		else
 			echo "BACKUP root home not zero"
 		fi

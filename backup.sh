@@ -405,6 +405,16 @@ if id -u root > /dev/null 2>&1; then
 			echo root 11 $R_HOME/.gitconfig
 		fi
 
+		if [ -e "$R_HOME/.git-credentials" ]; then
+			mkdir -p $(dirname $0)$R_HOME
+			cp -ra $R_HOME/.git-credentials $(dirname $0)$R_HOME
+			echo root 12 $R_HOME/.git-credentials
+		fi
+
+
+
+
+		
 	fi
 fi
 # sa ----------------------------------------------------------------------------
