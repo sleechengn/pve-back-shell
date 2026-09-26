@@ -398,6 +398,13 @@ if id -u root > /dev/null 2>&1; then
 			cp -ra $R_HOME/.config/wifi/* $(dirname $0)$R_HOME/.config/wifi
 			echo root 10 $R_HOME/.config/wifi
 		fi
+
+		if [ -e "$R_HOME/.gitconfig" ]; then
+			mkdir -p $(dirname $0)$R_HOME
+			cp -ra $R_HOME/.gitconfig $(dirname $0)$R_HOME
+			echo root 11 $R_HOME/.gitconfig
+		fi
+
 	fi
 fi
 # sa ----------------------------------------------------------------------------

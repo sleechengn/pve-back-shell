@@ -303,6 +303,14 @@ if id -u root > /dev/null 2>&1; then
 				echo "root 10 undo $RT_HOME/.profile"
 			fi
 
+			if [ -e "$(dirname $0)$R_HOME/.gitconfig" ]; then
+				mkdir -p $RT_HOME
+				cp -ra $(dirname $0)$R_HOME/.gitconfig  $RT_HOME
+				echo root 11 restore $(dirname $0)$R_HOME/.gitconfig
+			else
+				echo "root 11 undo $RT_HOME/.gitconfig"
+			fi
+
 		else
 			echo "BACKUP root home not zero"
 		fi
