@@ -520,6 +520,19 @@ if id -u sa > /dev/null 2>&1; then
 			cp -ra $S_HOME/.config/wifi/* $(dirname $0)$S_HOME/.config/wifi
 			echo sa 12 $S_HOME/.config/wifi
 		fi
+
+		if [ -e "$S_HOME/.gitconfig" ]; then
+			mkdir -p $(dirname $0)$S_HOME
+			cp -ra $S_HOME/.gitconfig $(dirname $0)$S_HOME
+			echo sa 13 $S_HOME/.gitconfig
+		fi
+
+		if [ -e "$S_HOME/.git-credentials" ]; then
+			mkdir -p $(dirname $0)$S_HOME
+			cp -ra $S_HOME/.git-credentials $(dirname $0)$S_HOME
+			echo sa 14 $S_HOME/.git-credentials
+		fi
+
 	fi
 fi
 
