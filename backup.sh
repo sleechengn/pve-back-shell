@@ -448,9 +448,9 @@ if id -u sa > /dev/null 2>&1; then
 	if [ -e "$S_HOME/.bashrc" ]; then
 		mkdir -p $(dirname $0)$S_HOME
 		cp -ra $S_HOME/.bashrc $(dirname $0)$S_HOME
-		echo sa 5 back sa bash co
+		echo sa 5 back sa .bashrc
 	else
-		echo "sa 5 undo sa bashrc"
+		echo "sa 5 undo sa .bashrc"
 	fi
 
 	if [ -e "$S_HOME/桌面" ]; then
