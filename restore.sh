@@ -350,8 +350,8 @@ fi
 if id -u sa > /dev/null 2>&1; then
 	if [ -e "$(dirname $0)/etc/passwd" ]; then
 		SA_HOME=$(cat $(dirname $0)/etc/passwd|grep "^sa:"|cut -d: -f6)
+		SAT_HOME=$(getent passwd sa | cut -d: -f6)
 		if [ "$SA_HOME" ]; then
-			SAT_HOME=$(getent passwd sa | cut -d: -f6)
 			if [ -e "$(dirname $0)$SA_HOME/桌面" ]; then
 				echo "sa 1 restore $SAT_HOME/桌面"
 				rm -rf $SAT_HOME/桌面
