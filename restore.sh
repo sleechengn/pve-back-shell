@@ -447,6 +447,24 @@ if id -u sa > /dev/null 2>&1; then
 				echo "sa 12 undo wifi"
 			fi
 
+			if [ -e "$(dirname $0)$SA_HOME/.gitconfig" ]; then
+				mkdir -p $SAT_HOME
+				cp -ra $(dirname $0)$SA_HOME/.gitconfig $SAT_HOME
+				chown -R sa $SAT_HOME/.gitconfig
+				echo sa 13 restore $(dirname $0)$SA_HOME/.gitconfig
+			else
+				echo "sa 13 undo .gitconfig"
+			fi
+
+			if [ -e "$(dirname $0)$SA_HOME/.git-credentials" ]; then
+				mkdir -p $SAT_HOME
+				cp -ra $(dirname $0)$SA_HOME/.git-credentials $SAT_HOME
+				chown -R sa $SAT_HOME/.git-credentials
+				echo sa 14 restore $(dirname $0)$SA_HOME/.git-credentials
+			else
+				echo "sa 14 undo .git-credentials"
+			fi
+
 		else
 			echo "BACKUP sa home not zero"
 		fi
