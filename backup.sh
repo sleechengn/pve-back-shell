@@ -334,173 +334,176 @@ fi
 # r ----------------------------------------------------
 if id -u root > /dev/null 2>&1; then
 	R_HOME=$(getent passwd root | cut -d: -f6)
-	if [ -e "$R_HOME/.bashrc" ]; then
-		mkdir -p $(dirname $0)$R_HOME
-		cp $R_HOME/.bashrc $(dirname $0)$R_HOME
-		echo root 1 backup root bashrc
-	else
-		echo root 1 undo root s bashrc
-	fi
+	if [ "$R_HOME" ]; then
+		if [ -e "$R_HOME/.bashrc" ]; then
+			mkdir -p $(dirname $0)$R_HOME
+			cp $R_HOME/.bashrc $(dirname $0)$R_HOME
+			echo root 1 backup root bashrc
+		else
+			echo root 1 undo root s bashrc
+		fi
 
-	if [ -e "$R_HOME/.tmux.conf" ]; then
-		mkdir -p $(dirname $0)$R_HOME
-		cp -a $R_HOME/.tmux.conf $(dirname $0)$R_HOME
-		echo "root 2 backup root tmux"
-	else
-		echo "root 2 unbackup root .tmux.conf"
-	fi
+		if [ -e "$R_HOME/.tmux.conf" ]; then
+			mkdir -p $(dirname $0)$R_HOME
+			cp -a $R_HOME/.tmux.conf $(dirname $0)$R_HOME
+			echo "root 2 backup root tmux"
+		else
+			echo "root 2 unbackup root .tmux.conf"
+		fi
 
-	if [ -e "$R_HOME/.bg.jpg" ]; then
-		mkdir -p $(dirname $0)$R_HOME
-		cp -ra $R_HOME/.bg.jpg $(dirname $0)$R_HOME
-		echo root 3 $R_HOME/.bg.jpg
-	fi
+		if [ -e "$R_HOME/.bg.jpg" ]; then
+			mkdir -p $(dirname $0)$R_HOME
+			cp -ra $R_HOME/.bg.jpg $(dirname $0)$R_HOME
+			echo root 3 $R_HOME/.bg.jpg
+		fi
 
-	if [ -e "$R_HOME/.config/fish/config.fish" ]; then
-		mkdir -p $(dirname $0)$R_HOME/.config/fish
-		cp $R_HOME/.config/fish/config.fish $(dirname $0)$R_HOME/.config/fish
-		echo root 4 config.fish
-	fi
+		if [ -e "$R_HOME/.config/fish/config.fish" ]; then
+			mkdir -p $(dirname $0)$R_HOME/.config/fish
+			cp $R_HOME/.config/fish/config.fish $(dirname $0)$R_HOME/.config/fish
+			echo root 4 config.fish
+		fi
 
-	if [ -e "$R_HOME/.bg.mp4" ]; then
-		mkdir -p $(dirname $0)$R_HOME
-		cp -ra $R_HOME/.bg.mp4 $(dirname $0)$R_HOME
-		echo root 5 $R_HOME/.bg.mp4
-	fi
+		if [ -e "$R_HOME/.bg.mp4" ]; then
+			mkdir -p $(dirname $0)$R_HOME
+			cp -ra $R_HOME/.bg.mp4 $(dirname $0)$R_HOME
+			echo root 5 $R_HOME/.bg.mp4
+		fi
 
-	if [ -e "$R_HOME/.bg.mlterm.jpg" ]; then
-		mkdir -p $(dirname $0)$R_HOME
-		cp -ra $R_HOME/.bg.mlterm.jpg $(dirname $0)$R_HOME
-		echo root 6 $R_HOME/.bg.mlterm.jpg
-	fi
+		if [ -e "$R_HOME/.bg.mlterm.jpg" ]; then
+			mkdir -p $(dirname $0)$R_HOME
+			cp -ra $R_HOME/.bg.mlterm.jpg $(dirname $0)$R_HOME
+			echo root 6 $R_HOME/.bg.mlterm.jpg
+		fi
 
-	if [ -e "$R_HOME/.mlterm" ]; then
-		mkdir -p $(dirname $0)$R_HOME
-		cp -ra $R_HOME/.mlterm $(dirname $0)$R_HOME
-		echo root 7 $R_HOME/.mlterm
-	fi
+		if [ -e "$R_HOME/.mlterm" ]; then
+			mkdir -p $(dirname $0)$R_HOME
+			cp -ra $R_HOME/.mlterm $(dirname $0)$R_HOME
+			echo root 7 $R_HOME/.mlterm
+		fi
 
-	if [ -e "$R_HOME/Pictures" ] && [ "$(ls -A $R_HOME/Pictures/)" ]; then
-		mkdir -p $(dirname $0)$R_HOME/Pictures
-		cp -ra $R_HOME/Pictures/* $(dirname $0)$R_HOME/Pictures
-		echo root 8 $R_HOME/Pictures
-	fi
+		if [ -e "$R_HOME/Pictures" ] && [ "$(ls -A $R_HOME/Pictures/)" ]; then
+			mkdir -p $(dirname $0)$R_HOME/Pictures
+			cp -ra $R_HOME/Pictures/* $(dirname $0)$R_HOME/Pictures
+			echo root 8 $R_HOME/Pictures
+		fi
 
-	if [ -e "$R_HOME/.profile" ]; then
-		mkdir -p $(dirname $0)$R_HOME
-		cp -ra $R_HOME/.profile $(dirname $0)$R_HOME
-		echo root 9 $R_HOME/.profile
-	fi
+		if [ -e "$R_HOME/.profile" ]; then
+			mkdir -p $(dirname $0)$R_HOME
+			cp -ra $R_HOME/.profile $(dirname $0)$R_HOME
+			echo root 9 $R_HOME/.profile
+		fi
 
-	if [ -e "$R_HOME/.config/wifi" ] && [ "$(ls -A $R_HOME/.config/wifi)" ]; then
-		mkdir -p $(dirname $0)$R_HOME/.config/wifi
-		cp -ra $R_HOME/.config/wifi/* $(dirname $0)$R_HOME/.config/wifi
-		echo root 10 $R_HOME/.config/wifi
+		if [ -e "$R_HOME/.config/wifi" ] && [ "$(ls -A $R_HOME/.config/wifi)" ]; then
+			mkdir -p $(dirname $0)$R_HOME/.config/wifi
+			cp -ra $R_HOME/.config/wifi/* $(dirname $0)$R_HOME/.config/wifi
+			echo root 10 $R_HOME/.config/wifi
+		fi
 	fi
 fi
 # sa ----------------------------------------------------------------------------
 if id -u sa > /dev/null 2>&1; then
 	S_HOME=$(getent passwd sa | cut -d: -f6)
-	if [ -e "$S_HOME/Desktop" ]; then
-		if [ "$(ls -A $S_HOME/Desktop)" ]; then
-			echo "sa 1 backup $S_HOME/Desktop/*"
-			mkdir -p $(dirname $0)$S_HOME/Desktop
-			cp -ra $S_HOME/Desktop/* $(dirname $0)$S_HOME/Desktop
+	if [ "$S_HOME" ]; then
+		if [ -e "$S_HOME/Desktop" ]; then
+			if [ "$(ls -A $S_HOME/Desktop)" ]; then
+				echo "sa 1 backup $S_HOME/Desktop/*"
+				mkdir -p $(dirname $0)$S_HOME/Desktop
+				cp -ra $S_HOME/Desktop/* $(dirname $0)$S_HOME/Desktop
+			else
+				echo "sa 1 undo $S_HOME/Desktop/*"
+			fi
 		else
 			echo "sa 1 undo $S_HOME/Desktop/*"
 		fi
-	else
-		echo "sa 1 undo $S_HOME/Desktop/*"
-	fi
 
-	if [ -e "$S_HOME/appShell" ]; then
-		if [ "$(ls -A $S_HOME/appShell)" ]; then
-			echo "sa 2 backup $S_HOME/appShell/*"
-			mkdir -p $(dirname $0)$S_HOME/appShell
-			cp -ra $S_HOME/appShell/* $(dirname $0)$S_HOME/appShell
+		if [ -e "$S_HOME/appShell" ]; then
+			if [ "$(ls -A $S_HOME/appShell)" ]; then
+				echo "sa 2 backup $S_HOME/appShell/*"
+				mkdir -p $(dirname $0)$S_HOME/appShell
+				cp -ra $S_HOME/appShell/* $(dirname $0)$S_HOME/appShell
+			else
+				echo "sa 2 undo $S_HOME/appShell/*"
+			fi
 		else
 			echo "sa 2 undo $S_HOME/appShell/*"
 		fi
-	else
-		echo "sa 2 undo $S_HOME/appShell/*"
-	fi
 
-	if [ -e "$S_HOME/appImages" ]; then
-		if [ "$(ls -A $S_HOME/appImages)" ]; then
-			echo "sa 3 backup $S_HOME/appImages/*"
-			mkdir -p $(dirname $0)$S_HOME/appImages
-			cp -ra $S_HOME/appImages/* $(dirname $0)$S_HOME/appImages
+		if [ -e "$S_HOME/appImages" ]; then
+			if [ "$(ls -A $S_HOME/appImages)" ]; then
+				echo "sa 3 backup $S_HOME/appImages/*"
+				mkdir -p $(dirname $0)$S_HOME/appImages
+				cp -ra $S_HOME/appImages/* $(dirname $0)$S_HOME/appImages
+			else
+				echo "sa 3 undo $S_HOME/appImages/*"
+			fi
 		else
 			echo "sa 3 undo $S_HOME/appImages/*"
 		fi
-	else
-		echo "sa 3 undo $S_HOME/appImages/*"
-	fi
 
-	if [ -e "$S_HOME/.tmux.conf" ]; then
-		mkdir -p $(dirname $0)$S_HOME
-		cp -a $S_HOME/.tmux.conf $(dirname $0)$S_HOME
-		echo "sa 4 backup $S_HOME/.tmux.conf"
-	else
-		echo "sa 4 undo $S_HOME/.tmux.conf"
-	fi
+		if [ -e "$S_HOME/.tmux.conf" ]; then
+			mkdir -p $(dirname $0)$S_HOME
+			cp -a $S_HOME/.tmux.conf $(dirname $0)$S_HOME
+			echo "sa 4 backup $S_HOME/.tmux.conf"
+		else
+			echo "sa 4 undo $S_HOME/.tmux.conf"
+		fi
 
-	if [ -e "$S_HOME/.bashrc" ]; then
-		mkdir -p $(dirname $0)$S_HOME
-		cp -ra $S_HOME/.bashrc $(dirname $0)$S_HOME
-		echo sa 5 back sa .bashrc
-	else
-		echo "sa 5 undo sa .bashrc"
-	fi
+		if [ -e "$S_HOME/.bashrc" ]; then
+			mkdir -p $(dirname $0)$S_HOME
+			cp -ra $S_HOME/.bashrc $(dirname $0)$S_HOME
+			echo sa 5 back sa .bashrc
+		else
+			echo "sa 5 undo sa .bashrc"
+		fi
 
-	if [ -e "$S_HOME/桌面" ]; then
-		if [ "$(ls -A $S_HOME/桌面)" ]; then
-			echo "sa 6 backup $S_HOME/桌面/*"
-			mkdir -p $(dirname $0)$S_HOME/桌面
-			cp -ra $S_HOME/桌面/*	$(dirname $0)$S_HOME/桌面
+		if [ -e "$S_HOME/桌面" ]; then
+			if [ "$(ls -A $S_HOME/桌面)" ]; then
+				echo "sa 6 backup $S_HOME/桌面/*"
+				mkdir -p $(dirname $0)$S_HOME/桌面
+				cp -ra $S_HOME/桌面/*	$(dirname $0)$S_HOME/桌面
+			else
+				echo "sa 6 undo $S_HOME/桌面/*"
+			fi
 		else
 			echo "sa 6 undo $S_HOME/桌面/*"
 		fi
-	else
-		echo "sa 6 undo $S_HOME/桌面/*"
-	fi
 
-	if [ -e "$S_HOME/.config/fish/config.fish" ]; then
-		mkdir -p $(dirname $0)$S_HOME/.config/fish
-		cp -ra $S_HOME/.config/fish/config.fish $(dirname $0)$S_HOME/.config/fish
-		echo sa 7 config.fish
-	fi
+		if [ -e "$S_HOME/.config/fish/config.fish" ]; then
+			mkdir -p $(dirname $0)$S_HOME/.config/fish
+			cp -ra $S_HOME/.config/fish/config.fish $(dirname $0)$S_HOME/.config/fish
+			echo sa 7 config.fish
+		fi
 
-	if [ -e "$S_HOME/.config/niri/config.kdl" ]; then
-		mkdir -p $(dirname $0)$S_HOME/.config/niri
-		cp -ra $S_HOME/.config/niri/config.kdl $(dirname $0)$S_HOME/.config/niri
-		echo sa 8 user sa config.kdl
-	fi
+		if [ -e "$S_HOME/.config/niri/config.kdl" ]; then
+			mkdir -p $(dirname $0)$S_HOME/.config/niri
+			cp -ra $S_HOME/.config/niri/config.kdl $(dirname $0)$S_HOME/.config/niri
+			echo sa 8 user sa config.kdl
+		fi
 
-	if [ -e "$S_HOME/.profile" ]; then
-		mkdir -p $(dirname $0)$S_HOME
-		cp -ra $S_HOME/.profile $(dirname $0)$S_HOME
-		echo sa 9 user sa profile
-	fi
+		if [ -e "$S_HOME/.profile" ]; then
+			mkdir -p $(dirname $0)$S_HOME
+			cp -ra $S_HOME/.profile $(dirname $0)$S_HOME
+			echo sa 9 user sa profile
+		fi
 
-	if [ -e "$S_HOME/.switch-bg.sh" ]; then
-		mkdir -p $(dirname $0)$S_HOME
-		cp -ra $S_HOME/.switch-bg.sh $(dirname $0)$S_HOME
-		echo sa 10 user sa $S_HOME/.switch-bg.sh
-	fi
+		if [ -e "$S_HOME/.switch-bg.sh" ]; then
+			mkdir -p $(dirname $0)$S_HOME
+			cp -ra $S_HOME/.switch-bg.sh $(dirname $0)$S_HOME
+			echo sa 10 user sa $S_HOME/.switch-bg.sh
+		fi
 
-	if [ -e "$S_HOME/Pictures" ] && [ "$(ls -A $S_HOME/Pictures)" ]; then
-		mkdir -p $(dirname $0)$S_HOME/Pictures
-		cp -ra $S_HOME/Pictures/* $(dirname $0)$S_HOME/Pictures
-		echo sa 11 $S_HOME/Pictures
-	fi
+		if [ -e "$S_HOME/Pictures" ] && [ "$(ls -A $S_HOME/Pictures)" ]; then
+			mkdir -p $(dirname $0)$S_HOME/Pictures
+			cp -ra $S_HOME/Pictures/* $(dirname $0)$S_HOME/Pictures
+			echo sa 11 $S_HOME/Pictures
+		fi
 
-	if [ -e "$S_HOME/.config/wifi" ] && [ "$(ls -A $S_HOME/.config/wifi)" ]; then
-		mkdir -p $(dirname $0)$S_HOME/.config/wifi
-		cp -ra $S_HOME/.config/wifi/* $(dirname $0)$S_HOME/.config/wifi
-		echo sa 12 $S_HOME/.config/wifi
+		if [ -e "$S_HOME/.config/wifi" ] && [ "$(ls -A $S_HOME/.config/wifi)" ]; then
+			mkdir -p $(dirname $0)$S_HOME/.config/wifi
+			cp -ra $S_HOME/.config/wifi/* $(dirname $0)$S_HOME/.config/wifi
+			echo sa 12 $S_HOME/.config/wifi
+		fi
 	fi
-
 fi
 
 echo "please make fstab done"
