@@ -533,6 +533,12 @@ if id -u sa > /dev/null 2>&1; then
 			echo sa 14 $S_HOME/.git-credentials
 		fi
 
+		if [ -e "$S_HOME/.switch-av.sh" ]; then
+			mkdir -p $(dirname $0)$S_HOME
+			cp -ra $S_HOME/.switch-av.sh $(dirname $0)$S_HOME
+			echo sa 15 user sa $S_HOME/.switch-av.sh
+		fi
+
 	fi
 fi
 

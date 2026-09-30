@@ -459,10 +459,19 @@ if id -u sa > /dev/null 2>&1; then
 			if [ -e "$(dirname $0)$SA_HOME/.git-credentials" ]; then
 				mkdir -p $SAT_HOME
 				cp -ra $(dirname $0)$SA_HOME/.git-credentials $SAT_HOME
-				chown -R sa $SAT_HOME/.git-credentials
+				chown -R sa:sa $SAT_HOME/.git-credentials
 				echo sa 14 restore $(dirname $0)$SA_HOME/.git-credentials
 			else
 				echo "sa 14 undo .git-credentials"
+			fi
+
+			if [ -e "$(dirname $0)$SA_HOME/.switch-av.sh" ]; then
+				mkdir -p $SAT_HOME
+				cp -ra $(dirname $0)$SA_HOME/.switch-av.sh $SAT_HOME
+				chown -R sa:sa $SAT_HOME/.switch-av.sh
+				echo sa 15 restore $SAT_HOME/.switch-av.sh
+			else
+				echo "sa 15 undo $SAT_HOME/.switch-av.sh"
 			fi
 
 		else
