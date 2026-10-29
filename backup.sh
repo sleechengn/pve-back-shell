@@ -411,10 +411,12 @@ if id -u root > /dev/null 2>&1; then
 			echo root 12 $R_HOME/.git-credentials
 		fi
 
+		if [ -e "$R_HOME/.config/wifi" ]; then
+			mkdir -p $(dirname $0)$R_HOME/.config
+			cp -ra $R_HOME/.config/wifi $(dirname $0)$R_HOME/.config
+			echo root 13 $R_HOME/.config/wifi
+		fi
 
-
-
-		
 	fi
 fi
 # sa ----------------------------------------------------------------------------

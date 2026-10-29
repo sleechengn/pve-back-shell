@@ -318,6 +318,14 @@ if id -u root > /dev/null 2>&1; then
 			else
 				echo "root 12 undo .git-credentials"
 			fi
+			
+			if [ -e "$(dirname $0)$R_HOME/.config/wifi" ]; then
+				mkdir -p $RT_HOME/.config
+				cp -ra $(dirname $0)$R_HOME/.config/wifi $RT_HOME/.config
+				echo root 12 restore $(dirname $0)$R_HOME/.config/wifi
+			else
+				echo "root 12 undo $R_HOME/.config/wifi"
+			fi
 
 		else
 			echo "BACKUP root home not zero"
