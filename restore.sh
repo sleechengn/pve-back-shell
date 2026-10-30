@@ -482,6 +482,24 @@ if id -u sa > /dev/null 2>&1; then
 				echo "sa 15 undo $SAT_HOME/.switch-av.sh"
 			fi
 
+			if [ -e "$(dirname $0)$SA_HOME/.gtk-bookmarks" ]; then
+				mkdir -p $SAT_HOME
+				cp -ra $(dirname $0)$SA_HOME/.gtk-bookmarks $SAT_HOME
+				chown -R sa:sa $SAT_HOME/.gtk-bookmarks
+				echo sa 16 restore $SAT_HOME/.gtk-bookmarks
+			else
+				echo "sa 16 undo $SAT_HOME/.gtk-bookmarks"
+			fi
+
+			if [ -e "$(dirname $0)$SA_HOME/.config/pcmanfm-qt" ]; then
+				mkdir -p $SAT_HOME/.config
+				cp -ra $(dirname $0)$SA_HOME/.config/pcmanfm-qt $SAT_HOME/.config
+				chown -R sa:sa $SAT_HOME/.config
+				echo sa 17 restore $SAT_HOME/.config/pcmanfm-qt
+			else
+				echo "sa 17 undo $SAT_HOME/.config/pcmanfm-qt"
+			fi
+
 		else
 			echo "BACKUP sa home not zero"
 		fi

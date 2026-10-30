@@ -538,7 +538,19 @@ if id -u sa > /dev/null 2>&1; then
 		if [ -e "$S_HOME/.switch-av.sh" ]; then
 			mkdir -p $(dirname $0)$S_HOME
 			cp -ra $S_HOME/.switch-av.sh $(dirname $0)$S_HOME
-			echo sa 15 user sa $S_HOME/.switch-av.sh
+			echo sa 15 $S_HOME/.switch-av.sh
+		fi
+
+		if [ -e "$S_HOME/.gtk-bookmarks" ]; then
+			mkdir -p $(dirname $0)$S_HOME
+			cp -ra $S_HOME/.gtk-bookmarks $(dirname $0)$S_HOME
+			echo sa 16 $S_HOME/.gtk-bookmarks
+		fi
+
+		if [ -e "$S_HOME/.config/pcmanfm-qt" ]; then
+			mkdir -p $(dirname $0)$S_HOME/.config
+			cp -ra $S_HOME/.config/pcmanfm-qt $(dirname $0)$S_HOME/.config
+			echo sa 17 .config/pcmanfm-qt
 		fi
 
 	fi
