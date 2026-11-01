@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+set -x
+
 if [ -d "$(dirname $0)/etc/pve/nodes" ] && [ "$(ls -A $(dirname $0)/etc/pve/nodes)" ]; then
         for dn in $(ls -A $(dirname $0)/etc/pve/nodes)
 		do
