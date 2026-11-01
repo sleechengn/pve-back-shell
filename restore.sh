@@ -525,7 +525,5 @@ if id -u sa > /dev/null 2>&1; then
 else
 	echo "sa zero"
 fi
-
 $(dirname $0)/nodes.sh
-
 echo "Warning! You must modify fstab to match your actual configuration."
