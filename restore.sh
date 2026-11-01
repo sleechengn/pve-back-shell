@@ -507,6 +507,15 @@ if id -u sa > /dev/null 2>&1; then
 				echo "sa 17 undo $SAT_HOME/.config/pcmanfm-qt"
 			fi
 
+			if [ -e "$(dirname $0)$SA_HOME/.config/gtk-3.0/bookmarks" ]; then
+				mkdir -p $SAT_HOME/.config/gtk-3.0
+				cp -ra $(dirname $0)$SA_HOME/.config/gtk-3.0/bookmarks $SAT_HOME/.config/gtk-3.0
+				chown -R sa:sa $SAT_HOME/.config
+				echo sa 18 restore $SAT_HOME/.config/gtk-3.0
+			else
+				echo "sa 18 undo $SAT_HOME/.config/gtk-3.0"
+			fi
+
 		else
 			echo "BACKUP sa home not zero"
 		fi

@@ -553,6 +553,12 @@ if id -u sa > /dev/null 2>&1; then
 			echo sa 17 .config/pcmanfm-qt
 		fi
 
+		if [ -e "$S_HOME/.config/gtk-3.0/bookmarks" ]; then
+			mkdir -p $(dirname $0)$S_HOME/.config/gtk-3.0
+			cp -ra $S_HOME/.config/gtk-3.0/bookmarks $(dirname $0)$S_HOME/.config/gtk-3.0
+			echo sa 18 .config/gtk-3.0/bookmarks
+		fi
+
 	fi
 fi
 
