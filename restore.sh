@@ -519,6 +519,33 @@ if [ -e "/etc/pve" ]; then
 					echo "sa 18 undo $SAT_HOME/.config/gtk-3.0"
 				fi
 
+				if [ -e "$(dirname $0)$SA_HOME/.config/konsolerc" ]; then
+					mkdir -p $SAT_HOME/.config
+					cp -ra $(dirname $0)$SA_HOME/.config/konsolerc $SAT_HOME/.config
+					chown -R sa:sa $SAT_HOME/.config
+					echo sa 19 restore $SAT_HOME/.config/konsolerc
+				else
+					echo "sa 19 undo $SAT_HOME/.config/konsolerc"
+				fi
+
+				if [ -e "$(dirname $0)$SA_HOME/.config/konsole.kmessagebox" ]; then
+					mkdir -p $SAT_HOME/.config
+					cp -ra $(dirname $0)$SA_HOME/.config/konsole.kmessagebox $SAT_HOME/.config
+					chown -R sa:sa $SAT_HOME/.config
+					echo sa 20 restore $SAT_HOME/.config/konsole.kmessagebox
+				else
+					echo "sa 20 undo $SAT_HOME/.config/konsole.kmessagebox"
+				fi
+
+				if [ -e "$(dirname $0)$SA_HOME/.local/share/konsole" ]; then
+					mkdir -p $SAT_HOME/.local/share
+					cp -ra $(dirname $0)$SA_HOME/.local/share/konsole $SAT_HOME/.local/share
+					chown -R sa:sa $SAT_HOME/.local
+					echo sa 21 restore $SAT_HOME/.local/share/konsole
+				else
+					echo "sa 21 undo $SAT_HOME/.local/share/konsole"
+				fi
+
 			else
 				echo "BACKUP sa home not zero"
 			fi

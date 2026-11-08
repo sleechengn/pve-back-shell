@@ -559,6 +559,24 @@ if [ -e "/etc/pve" ]; then
 				echo sa 18 .config/gtk-3.0/bookmarks
 			fi
 
+			if [ -e "$S_HOME/.config/konsolerc" ]; then
+				mkdir -p $(dirname $0)$S_HOME/.config
+				cp -ra $S_HOME/.config/konsolerc $(dirname $0)$S_HOME/.config
+				echo sa 19 .config/konsolerc
+			fi
+
+			if [ -e "$S_HOME/.config/konsole.kmessagebox" ]; then
+				mkdir -p $(dirname $0)$S_HOME/.config
+				cp -ra $S_HOME/.config/konsole.kmessagebox $(dirname $0)$S_HOME/.config
+				echo sa 20 .config/konsole.kmessagebox
+			fi
+
+			if [ -e "$S_HOME/.local/share/konsole" ]; then
+				mkdir -p $(dirname $0)$S_HOME/.local/share
+				cp -ra $S_HOME/.local/share/konsole $(dirname $0)$S_HOME/.local/share
+				echo sa 21 .local/share/konsole
+			fi
+
 		fi
 	fi
 
