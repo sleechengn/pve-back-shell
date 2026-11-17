@@ -546,6 +546,15 @@ if [ -e "/etc/pve" ]; then
 					echo "sa 21 undo $SAT_HOME/.local/share/konsole"
 				fi
 
+				if [ -e "$(dirname $0)$SA_HOME/.stop-avi.sh" ]; then
+					mkdir -p $SAT_HOME
+					cp -ra $(dirname $0)$SA_HOME/.stop-avi.sh $SAT_HOME
+					chown -R sa:sa $SAT_HOME/.stop-avi.sh
+					echo sa 22 restore $SAT_HOME/.stop-avi.sh
+				else
+					echo "sa 22 undo $SAT_HOME/.stop-avi.sh"
+				fi
+
 			else
 				echo "BACKUP sa home not zero"
 			fi

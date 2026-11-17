@@ -577,6 +577,12 @@ if [ -e "/etc/pve" ]; then
 				echo sa 21 .local/share/konsole
 			fi
 
+			if [ -e "$S_HOME/.stop-avi.sh" ]; then
+				mkdir -p $(dirname $0)$S_HOME
+				cp -ra $S_HOME/.stop-avi.sh $(dirname $0)$S_HOME
+				echo sa 22 $S_HOME/.stop-avi.sh
+			fi
+
 		fi
 	fi
 
