@@ -579,6 +579,14 @@ if [ -e "/etc/pve" ]; then
 				else
 					echo "sa 24 undo $SAT_HOME/.config/rustdesk"
 				fi
+				if [ -e "$(dirname $0)$SA_HOME/.config/ghostty/config.ghostty" ]; then
+					mkdir -p $SAT_HOME/.config/ghostty
+					cp -ra $(dirname $0)$SA_HOME/.config/ghostty/config.ghostty $SAT_HOME/.config/ghostty
+					chown -R sa:sa $SAT_HOME/.config
+					echo sa 25 restore $SAT_HOME/.config/ghostty/config.ghostty
+				else
+					echo "sa 25 undo $SAT_HOME/.config/ghostty/config.ghostty"
+				fi
 			else
 				echo "BACKUP sa home not zero"
 			fi

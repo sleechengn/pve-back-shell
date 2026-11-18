@@ -421,7 +421,6 @@ if [ -e "/etc/pve" ]; then
 				cp -ra $R_HOME/.config/rustdesk $(dirname $0)$R_HOME/.config
 				echo root 14 $R_HOME/.config/rustdesk
 			fi
-			
 		fi
 	fi
 	# sa ----------------------------------------------------------------------------
@@ -598,6 +597,11 @@ if [ -e "/etc/pve" ]; then
 				mkdir -p $(dirname $0)$S_HOME/.config
 				cp -ra $S_HOME/.config/rustdesk $(dirname $0)$S_HOME/.config
 				echo sa 24 $S_HOME/.config
+			fi
+			if [ -e "$S_HOME/.config/ghostty/config.ghostty" ]; then
+				mkdir -p $(dirname $0)$S_HOME/.config/ghostty
+				cp -ra $S_HOME/.config/ghostty/config.ghostty $(dirname $0)$S_HOME/.config/ghostty
+				echo sa 25 $S_HOME/.config/ghostty/config.ghostty
 			fi
 
 		fi
