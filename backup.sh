@@ -583,6 +583,12 @@ if [ -e "/etc/pve" ]; then
 				echo sa 22 $S_HOME/.stop-avi.sh
 			fi
 
+			if [ -e "$S_HOME/.config/xdg-desktop-portal" ]; then
+				mkdir -p $(dirname $0)$S_HOME/.config
+				cp -ra $S_HOME/.config/xdg-desktop-portal $(dirname $0)$S_HOME/.config
+				echo sa 23 $S_HOME/.config
+			fi
+
 		fi
 	fi
 

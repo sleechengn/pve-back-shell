@@ -555,6 +555,15 @@ if [ -e "/etc/pve" ]; then
 					echo "sa 22 undo $SAT_HOME/.stop-avi.sh"
 				fi
 
+				if [ -e "$(dirname $0)$SA_HOME/.config/xdg-desktop-portal" ]; then
+					mkdir -p $SAT_HOME/.config
+					cp -ra $(dirname $0)$SA_HOME/.config/xdg-desktop-portal $SAT_HOME/.config
+					chown -R sa:sa $SAT_HOME/.config
+					echo sa 23 restore $SAT_HOME/.config/xdg-desktop-portal
+				else
+					echo "sa 23 undo $SAT_HOME/.config/xdg-desktop-portal"
+				fi
+
 			else
 				echo "BACKUP sa home not zero"
 			fi
