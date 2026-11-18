@@ -416,7 +416,12 @@ if [ -e "/etc/pve" ]; then
 				cp -ra $R_HOME/.config/wifi $(dirname $0)$R_HOME/.config
 				echo root 13 $R_HOME/.config/wifi
 			fi
-
+			if [ -e "$R_HOME/.config/rustdesk" ]; then
+				mkdir -p $(dirname $0)$R_HOME/.config
+				cp -ra $R_HOME/.config/rustdesk $(dirname $0)$R_HOME/.config
+				echo root 14 $R_HOME/.config/rustdesk
+			fi
+			
 		fi
 	fi
 	# sa ----------------------------------------------------------------------------
@@ -587,6 +592,12 @@ if [ -e "/etc/pve" ]; then
 				mkdir -p $(dirname $0)$S_HOME/.config
 				cp -ra $S_HOME/.config/xdg-desktop-portal $(dirname $0)$S_HOME/.config
 				echo sa 23 $S_HOME/.config
+			fi
+
+			if [ -e "$S_HOME/.config/rustdesk" ]; then
+				mkdir -p $(dirname $0)$S_HOME/.config
+				cp -ra $S_HOME/.config/rustdesk $(dirname $0)$S_HOME/.config
+				echo sa 24 $S_HOME/.config
 			fi
 
 		fi

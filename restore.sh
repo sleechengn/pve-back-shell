@@ -325,9 +325,17 @@ if [ -e "/etc/pve" ]; then
 				if [ -e "$(dirname $0)$R_HOME/.config/wifi" ]; then
 					mkdir -p $RT_HOME/.config
 					cp -ra $(dirname $0)$R_HOME/.config/wifi $RT_HOME/.config
-					echo root 12 restore $(dirname $0)$R_HOME/.config/wifi
+					echo root 13 restore $(dirname $0)$R_HOME/.config/wifi
 				else
-					echo "root 12 undo $R_HOME/.config/wifi"
+					echo "root 13 undo $R_HOME/.config/wifi"
+				fi
+
+				if [ -e "$(dirname $0)$R_HOME/.config/rustdesk" ]; then
+					mkdir -p $RT_HOME/.config
+					cp -ra $(dirname $0)$R_HOME/.config/rustdesk $RT_HOME/.config
+					echo root 14 restore $(dirname $0)$R_HOME/.config/rustdesk
+				else
+					echo "root 14 undo $R_HOME/.config/rustdesk"
 				fi
 
 			else
@@ -563,7 +571,14 @@ if [ -e "/etc/pve" ]; then
 				else
 					echo "sa 23 undo $SAT_HOME/.config/xdg-desktop-portal"
 				fi
-
+				if [ -e "$(dirname $0)$SA_HOME/.config/rustdesk" ]; then
+					mkdir -p $SAT_HOME/.config
+					cp -ra $(dirname $0)$SA_HOME/.config/rustdesk $SAT_HOME/.config
+					chown -R sa:sa $SAT_HOME/.config
+					echo sa 24 restore $SAT_HOME/.config/rustdesk
+				else
+					echo "sa 24 undo $SAT_HOME/.config/rustdesk"
+				fi
 			else
 				echo "BACKUP sa home not zero"
 			fi
