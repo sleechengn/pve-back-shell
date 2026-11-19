@@ -587,6 +587,14 @@ if [ -e "/etc/pve" ]; then
 				else
 					echo "sa 25 undo $SAT_HOME/.config/ghostty/config.ghostty"
 				fi
+				if [ -e "$(dirname $0)$SA_HOME/.config/mako" ]; then
+					mkdir -p $SAT_HOME/.config
+					cp -ra $(dirname $0)$SA_HOME/.config/mako $SAT_HOME/.config
+					chown -R sa:sa $SAT_HOME/.config
+					echo sa 26 restore $SAT_HOME/.config/mako
+				else
+					echo "sa 26 undo $SAT_HOME/.config/mako"
+				fi
 			else
 				echo "BACKUP sa home not zero"
 			fi

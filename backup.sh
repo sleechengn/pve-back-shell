@@ -603,7 +603,11 @@ if [ -e "/etc/pve" ]; then
 				cp -ra $S_HOME/.config/ghostty/config.ghostty $(dirname $0)$S_HOME/.config/ghostty
 				echo sa 25 $S_HOME/.config/ghostty/config.ghostty
 			fi
-
+			if [ -e "$S_HOME/.config/mako" ]; then
+				mkdir -p $(dirname $0)$S_HOME/.config
+				cp -ra $S_HOME/.config/mako $(dirname $0)$S_HOME/.config
+				echo sa 26 $S_HOME/.config/mako
+			fi
 		fi
 	fi
 
