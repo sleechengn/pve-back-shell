@@ -595,6 +595,15 @@ if [ -e "/etc/pve" ]; then
 				else
 					echo "sa 26 undo $SAT_HOME/.config/mako"
 				fi
+				if [ -e "$(dirname $0)$SA_HOME/.scripts" ]; then
+					mkdir -p $SAT_HOME
+					cp -ra $(dirname $0)$SA_HOME/.scripts $SAT_HOME
+					chown -R sa:sa $SAT_HOME/.scripts
+					echo sa 27 restore $SAT_HOME/.scripts
+				else
+					echo "sa 27 undo $SAT_HOME/.scripts"
+				fi
+
 			else
 				echo "BACKUP sa home not zero"
 			fi

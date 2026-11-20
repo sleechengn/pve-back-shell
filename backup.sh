@@ -608,6 +608,11 @@ if [ -e "/etc/pve" ]; then
 				cp -ra $S_HOME/.config/mako $(dirname $0)$S_HOME/.config
 				echo sa 26 $S_HOME/.config/mako
 			fi
+			if [ -e "$S_HOME/.scripts" ]; then
+				mkdir -p $(dirname $0)$S_HOME
+				cp -ra $S_HOME/.scripts $(dirname $0)$S_HOME
+				echo sa 27 $S_HOME/.scripts
+			fi
 		fi
 	fi
 
